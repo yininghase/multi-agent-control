@@ -27,8 +27,15 @@ pip install matplotlib
 ## Results
 
 Here we show videos to show the qualitative results of our approach **in different settings**. 
-![image](./images/IterGNN_MyTransformerConv_1.gif)![image](./images/IterGNN_MyTransformerConv_2.gif)
-![image](./images/IterGNN_MyTransformerConv_3.gif)![image](./images/IterGNN_MyTransformerConv_4.gif)
+<div style="display: flex;">
+  <img src="./images/IterGNN_MyTransformerConv_1.gif" style="width: 50%;">
+  <img src="./images/IterGNN_MyTransformerConv_2.gif" style="width: 50%;">
+</div>
+
+<div style="display: flex;">
+  <img src="./images/IterGNN_MyTransformerConv_3.gif" style="width: 50%;">
+  <img src="./images/IterGNN_MyTransformerConv_4.gif" style="width: 50%;">
+</div>
 
 
 ### Show Attention
@@ -44,7 +51,7 @@ conda activate myenv
 cd $path to this repo$
 python visualize_attention.py
 ```
-A window will pumped out:
+A window will pump out:
 ![image](./images/Attention_Visualization_Tool.png)
 
 Clicking and draging the vehicle or target can change the position of it. 
