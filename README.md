@@ -32,18 +32,18 @@ Here we show videos to show the qualitative results of our approach **in differe
 <table>
   <tr>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_1.gif" style="width: 100%;">
+      <img src="./images/IterGNN_MyTransformerConv_1.gif">
     </td>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_2.gif" style="width: 100%;">
+      <img src="./images/IterGNN_MyTransformerConv_2.gif">
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_3.gif" style="width: 100%;">
+      <img src="./images/IterGNN_MyTransformerConv_3.gif">
     </td>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_4.gif" style="width: 100%;">
+      <img src="./images/IterGNN_MyTransformerConv_4.gif">
     </td>
   </tr>
 </table>
@@ -64,13 +64,13 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   <tr>
     <td>
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_1.gif" style="width: 100%;">
+            <img src="./images/IterGNN_MyTransformerConv_1.gif">
             <figcaption>Our Model</figcaption>
         </figure>
     </td>
     <td>
         <figure>
-            <img src="./images/IterGNN_TransformerConv_1.gif" style="width: 100%;">
+            <img src="./images/IterGNN_TransformerConv_1.gif">
             <figcaption>TransformerConv</figcaption>
         </figure>
     </td>
@@ -78,13 +78,13 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   <tr>
     <td>
         <figure>
-            <img src="./images/IterGNN_GAINet_1.gif" style="width: 100%;">
+            <img src="./images/IterGNN_GAINet_1.gif">
             <figcaption>GAINet</figcaption>
         </figure>
     </td>
     <td>
         <figure>
-            <img src="./images/IterGNN_EdgeConv_1.gif" style="width: 100%;">
+            <img src="./images/IterGNN_EdgeConv_1.gif">
             <figcaption>EdgeConv</figcaption>
         </figure>
     </td>
@@ -95,13 +95,13 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   <tr>
     <td>
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_4.gif" style="width: 100%;">
+            <img src="./images/IterGNN_MyTransformerConv_4.gif">
             <figcaption>Our Model</figcaption>
         </figure>
     </td>
     <td>
         <figure>
-            <img src="./images/IterGNN_TransformerConv_4.gif" style="width: 100%;">
+            <img src="./images/IterGNN_TransformerConv_4.gif">
             <figcaption>TransformerConv</figcaption>
         </figure>
     </td>
@@ -109,13 +109,13 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   <tr>
     <td>
         <figure>
-            <img src="./images/IterGNN_GAINet_4.gif" style="width: 100%;">
+            <img src="./images/IterGNN_GAINet_4.gif">
             <figcaption>GAINet</figcaption>
         </figure>
     </td>
     <td>
         <figure>
-            <img src="./images/IterGNN_EdgeConv_4.gif" style="width: 100%;">
+            <img src="./images/IterGNN_EdgeConv_4.gif">
             <figcaption>EdgeConv</figcaption>
         </figure>
     </td>
