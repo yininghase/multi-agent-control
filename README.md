@@ -37,9 +37,6 @@ Here we show videos to show the qualitative results of our approach **in differe
       <img src="./images/IterGNN_MyTransformerConv_2.gif" style="width: 100%;">
     </td>
   </tr>
-</table>
-
-<table>
   <tr>
     <td>
       <img src="./images/IterGNN_MyTransformerConv_3.gif" style="width: 100%;">
@@ -49,9 +46,6 @@ Here we show videos to show the qualitative results of our approach **in differe
     </td>
   </tr>
 </table>
-
-
-
 
 
 ### Show Attention
