@@ -1,7 +1,7 @@
 #  Multi-Agent-Control
 ## Multi-Agent Control in Unconstrained Environments using an Attention basedGraphical Neural Network
 
- This repository contains code for the paper **Multi-Agent Control in Unconstrained Environments using an Attention basedGraphical Neural Network** 
+This repository contains code for the paper **Multi-Agent Control in Unconstrained Environments using an Attention basedGraphical Neural Network** 
 
 In this work, we propose a learning based neuralmodel that provides control commands to simul-taneously navigate multiple vehicles.  The goalis to ensure that each vehicle reaches a desiredtarget state without colliding with any other vehi-cle or obstacle in an unconstrained environment.The model utilizes an attention based GraphicalNeural Network paradigm that takes into consid-eration the state of all the surrounding vehicles tomake an informed decision. This allows each vehicle to smoothly reach its destination while alsoevading collision with the other agents. The dataand corresponding labels for training such a net-work is obtained using an optimization based pro-cedure.  Experimental results demonstrates thatour model is powerful enough to generalize evento situations with more vehicles than in the train-ing data. Our method also outperforms compara-ble graphical neural network architectures.
 
@@ -27,13 +27,13 @@ pip install matplotlib
 ## Results
 
 Here we show videos to show the qualitative results of our approach **in different settings**. 
-![image](./images/IterGNN_MyTransformerConv_1.png)![image](./images/IterGNN_MyTransformerConv_2.png)
-![image](./images/IterGNN_MyTransformerConv_3.png)![image](./images/IterGNN_MyTransformerConv_4.png)
+![image](./images/IterGNN_MyTransformerConv_1.gif)![image](./images/IterGNN_MyTransformerConv_2.gif)
+![image](./images/IterGNN_MyTransformerConv_3.gif)![image](./images/IterGNN_MyTransformerConv_4.gif)
 
 
 ### Show Attention
 
-![image](./images/IterGNN_MyTransformerConv_Show_Attention.png)
+![image](./images/IterGNN_MyTransformerConv_Show_Attention.gif)
 
 
 ## Tool for Visualizing Attention 
