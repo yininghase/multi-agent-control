@@ -29,21 +29,21 @@ pip install matplotlib
 
 Here we show videos to show the qualitative results of our approach **in different settings**. Although our model is trained with less than 3 vehicles. It can be will generalized to deal with 6 vehicles.
 
-<table style="width: 100%;">
+<table>
   <tr>
-    <td style="width: 50%;">
-      <img src="./images/IterGNN_MyTransformerConv_1.gif">
+    <td>
+      <img src="./images/IterGNN_MyTransformerConv_1.gif" width=" 400 ">
     </td>
-    <td style="width: 50%;">
-      <img src="./images/IterGNN_MyTransformerConv_2.gif">
+    <td>
+      <img src="./images/IterGNN_MyTransformerConv_2.gif" width=" 400 ">
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
-      <img src="./images/IterGNN_MyTransformerConv_3.gif">
+    <td>
+      <img src="./images/IterGNN_MyTransformerConv_3.gif" width=" 400 ">
     </td>
-    <td style="width: 50%;">
-      <img src="./images/IterGNN_MyTransformerConv_4.gif">
+    <td>
+      <img src="./images/IterGNN_MyTransformerConv_4.gif" width=" 400 ">
     </td>
   </tr>
 </table>
@@ -60,62 +60,62 @@ The image below shows how the attention changes when the vehicles are moving. We
 
 Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3]. Our model can drive all the vehicles to the destination without colliding with each other while vehicles always collide with other models.
 
-<table style="width: 100%;">
+<table>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_1.gif">
+            <img src="./images/IterGNN_MyTransformerConv_1.gif" width=" 400 ">
             <figcaption>Our Model</figcaption>
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_TransformerConv_1.gif">
+            <img src="./images/IterGNN_TransformerConv_1.gif" width=" 400 ">
             <figcaption>TransformerConv</figcaption>
         </figure>
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_GAINet_1.gif">
+            <img src="./images/IterGNN_GAINet_1.gif" width=" 400 ">
             <figcaption>GAINet</figcaption>
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_EdgeConv_1.gif">
+            <img src="./images/IterGNN_EdgeConv_1.gif" width=" 400 ">
             <figcaption>EdgeConv</figcaption>
         </figure>
     </td>
   </tr>
 </table>
 
-<table style="width: 100%;">
+<table>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_4.gif">
+            <img src="./images/IterGNN_MyTransformerConv_4.gif" width=" 400 ">
             <figcaption>Our Model</figcaption>
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_TransformerConv_4.gif">
+            <img src="./images/IterGNN_TransformerConv_4.gif" width=" 400 ">
             <figcaption>TransformerConv</figcaption>
         </figure>
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_GAINet_4.gif">
+            <img src="./images/IterGNN_GAINet_4.gif" width=" 400 ">
             <figcaption>GAINet</figcaption>
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td>
         <figure>
-            <img src="./images/IterGNN_EdgeConv_4.gif">
+            <img src="./images/IterGNN_EdgeConv_4.gif" width=" 400 ">
             <figcaption>EdgeConv</figcaption>
         </figure>
     </td>
