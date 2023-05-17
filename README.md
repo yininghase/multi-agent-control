@@ -29,20 +29,20 @@ pip install matplotlib
 
 Here we show videos to show the qualitative results of our approach **in different settings**. Although our model is trained with less than 3 vehicles. It can be will generalized to deal with 6 vehicles.
 
-<table>
+<table style="width: 100%;">
   <tr>
-    <td>
+    <td style="width: 50%;">
       <img src="./images/IterGNN_MyTransformerConv_1.gif">
     </td>
-    <td>
+    <td style="width: 50%;">
       <img src="./images/IterGNN_MyTransformerConv_2.gif">
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="width: 50%;">
       <img src="./images/IterGNN_MyTransformerConv_3.gif">
     </td>
-    <td>
+    <td style="width: 50%;">
       <img src="./images/IterGNN_MyTransformerConv_4.gif">
     </td>
   </tr>
@@ -60,15 +60,15 @@ The image below shows how the attention changes when the vehicles are moving. We
 
 Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3]. Our model can drive all the vehicles to the destination without colliding with each other while vehicles always collide with other models.
 
-<table>
+<table style="width: 100%;">
   <tr>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_1.gif">
             <figcaption>Our Model</figcaption>
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_TransformerConv_1.gif">
             <figcaption>TransformerConv</figcaption>
@@ -76,13 +76,13 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_GAINet_1.gif">
             <figcaption>GAINet</figcaption>
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_EdgeConv_1.gif">
             <figcaption>EdgeConv</figcaption>
@@ -91,15 +91,15 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   </tr>
 </table>
 
-<table>
+<table style="width: 100%;">
   <tr>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_4.gif">
             <figcaption>Our Model</figcaption>
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_TransformerConv_4.gif">
             <figcaption>TransformerConv</figcaption>
@@ -107,13 +107,13 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_GAINet_4.gif">
             <figcaption>GAINet</figcaption>
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_EdgeConv_4.gif">
             <figcaption>EdgeConv</figcaption>
