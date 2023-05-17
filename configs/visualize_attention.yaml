@@ -1,0 +1,23 @@
+simulation runs: 2
+figure size: 8
+figure limit: 30
+ticks step: 5
+car size: 
+  - 1.0 
+  - 2.5
+num of vehicles: 
+num of obstacles: 
+
+model path: ./models/IterGNN_MyTransformerConv.pth
+
+convolution type: MyTransformerConv
+
+use relative frame: False
+collision mode: True # higher priority than parking mode
+parking mode: False
+
+test data souce: on the fly 
+test data folder: ./data/test_dataset
+test data each case:  
+problem collection: # [num of vehicle, num of obstacle]
+  - [5,1]
