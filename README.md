@@ -3,7 +3,7 @@
 
 This repository contains code for the paper **Multi-Agent Control in Unconstrained Environments using an Attention basedGraphical Neural Network** 
 
-In this work, we propose a learning based neuralmodel that provides control commands to simul-taneously navigate multiple vehicles.  The goalis to ensure that each vehicle reaches a desiredtarget state without colliding with any other vehi-cle or obstacle in an unconstrained environment.The model utilizes an attention based GraphicalNeural Network paradigm that takes into consid-eration the state of all the surrounding vehicles tomake an informed decision. This allows each vehicle to smoothly reach its destination while alsoevading collision with the other agents. The dataand corresponding labels for training such a net-work is obtained using an optimization based pro-cedure.  Experimental results demonstrates thatour model is powerful enough to generalize evento situations with more vehicles than in the train-ing data. Our method also outperforms compara-ble graphical neural network architectures.
+In this work, we propose a learning based neural model that provides control commands to simultaneously navigate multiple vehicles. The goal is to ensure that each vehicle reaches a desired target state without colliding with any other vehicle or obstacle in an unconstrained environment. The model utilizes an attention based Graphical Neural Network paradigm that takes into consideration the state of all the surrounding vehicles to make an informed decision. This allows each vehicle to smoothly reach its destination while also evading collision with the other agents. The data and corresponding labels for training such a network is obtained using an optimization based procedure. Experimental results demonstrates that our model is powerful enough to generalize even to situations with more vehicles than in the training data. Our method also outperforms comparable graphical neural network architectures.
 
 
 ## Environment
@@ -24,9 +24,9 @@ pip install pyyaml
 pip install matplotlib
 ```
 
-## Results
+## Show Results of our Model 
 
-Here we show videos to show the qualitative results of our approach **in different settings**. 
+Here we show videos to show the qualitative results of our approach **in different settings**. Although our model is trained with less than 3 vehicles. It can be will generalized to deal with 6 vehicles.
 
 <table>
   <tr>
@@ -48,10 +48,57 @@ Here we show videos to show the qualitative results of our approach **in differe
 </table>
 
 
-### Show Attention
+### Show Attention of our Model
+
+The image below shows how the attention changes when the vehicles are moving. We visualize the mean of attention logits from all the graph attention layers of our model. The rows in the attention matrix correspond to the vehicle of interest. The columns show which vehicles/obstacle is being attended to. A lighter shade in the attention matrix depicts high attention and a darker shade represents lack of attention.
 
 ![image](./images/IterGNN_MyTransformerConv_Show_Attention.gif)
 
+### Compare with Other GNN Models
+
+Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3]. Our model can drive all the vehicles to the destination without colliding with each other while vehicles always collide with other models.
+
+<table>
+  <tr>
+    <td>
+      <img src="./images/IterGNN_MyTransformerConv_1.gif" alt="Our Model" style="width: 100%;">
+    </td>
+    <td>
+      <img src="./images/IterGNN_TransformerConv_1.gif" alt="TransformerConv" style="width: 100%;">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./images/IterGNN_GAINet_1.gif" alt="GAINet" style="width: 100%;">
+    </td>
+    <td>
+      <img src="./images/IterGNN_EdgeConv_1.gif" alt="EdgeConv" style="width: 100%;">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>
+      <img src="./images/IterGNN_MyTransformerConv_4.gif" alt="Our Model" style="width: 100%;">
+    </td>
+    <td>
+      <img src="./images/IterGNN_TransformerConv_4.gif" alt="TransformerConv" style="width: 100%;">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./images/IterGNN_GAINet_4.gif" alt="GAINet" style="width: 100%;">
+    </td>
+    <td>
+      <img src="./images/IterGNN_EdgeConv_4.gif" alt="EdgeConv" style="width: 100%;">
+    </td>
+  </tr>
+</table>
+
+[1]: Liu, Y., Qi, X., Sisbot, E. A., and Oguchi, K. **Multi-agent trajectory prediction with graph attention isomorphismneural network**. In 2022 IEEE Intelligent Vehicles Symposium (IV), pp. 273–279, 2022. doi: 10.1109/IV51971.2022.9827155.
+[2]: Shi, Y., Huang, Z., Feng, S., Zhong, H., Wang, W., and Sun,Y. **Masked label prediction:  Unified message passing model for semi-supervised classification**. arXiv preprint arXiv:2009.03509, 2020.
+[3]: Yue, W., Yongbin, S., Ziwei, L., Sarma, S. E., and Bronstein, M. M. **Dynamic graph cnn for learning on point clouds**. Acm Transactions On Graphics (tog), 38(5), 2019.
 
 ## Tool for Visualizing Attention 
 
