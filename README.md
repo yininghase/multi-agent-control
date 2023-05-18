@@ -64,25 +64,25 @@ Example 1:
 
 <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
-    <td>
+    <td width="50%">
         <text>
         Our Model      
         </text>
     </td>
-    <td>
+    <td width="50%">
         <text>
         GAINet         
         </text> 
     </td>
   </tr>
   <tr>
-    <td>
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_1.gif">
             <!-- <figcaption>Our Model</figcaption> -->
         </figure>
     </td>
-    <td>
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_GAINet_1.gif">
             <!-- <figcaption>GAINet</figcaption> -->
@@ -90,25 +90,25 @@ Example 1:
     </td>
   </tr>
   <tr>
-    <td>
+    <td width="50%">
         <text>
         TransformerConv
         </text>
     </td>
-    <td>
+    <td width="50%">
         <text>
         EdgeConv        
         </text>
     </td>
   </tr>
   <tr>
-    <td>
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_TransformerConv_1.gif">
             <!-- <figcaption>TransformerConv</figcaption> -->
         </figure>
     </td>
-    <td>
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_EdgeConv_1.gif">
             <!-- <figcaption>EdgeConv</figcaption> -->
@@ -119,27 +119,27 @@ Example 1:
 
 Example 2:
 
-<table style="width: 100%;">
+<table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
-    <td style="width: 50%;">
+    <td width="50%">
         <text>
         Our Model
         </text>
     </td>
-    <td style="width: 50%;">
+    <td width="50%">
         <text>
         GAINet
         </text>
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_4.gif">
             <!-- <figcaption>Our Model</figcaption> -->
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_GAINet_4.gif">
             <!-- <figcaption>GAINet</figcaption> -->
@@ -147,25 +147,25 @@ Example 2:
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td width="50%">
         <text>
         TransformerConv
         </text>
     </td>
-    <td style="width: 50%;"
+    <td width="50%">
         <text>
         EdgeConv
         </text>
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_TransformerConv_4.gif">
             <!-- <figcaption>TransformerConv</figcaption> -->
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td width="50%">
         <figure>
             <img src="./images/IterGNN_EdgeConv_4.gif">
             <!-- <figcaption>EdgeConv</figcaption> -->
