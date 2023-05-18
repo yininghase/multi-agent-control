@@ -31,10 +31,10 @@ Here we show videos to show the qualitative results of our approach **in differe
 
 <table>
   <tr>
-    <td>
+    <!-- <td>
       <img src="./images/IterGNN_MyTransformerConv_1.gif">
     </td>
-    <td>
+    <td> -->
       <img src="./images/IterGNN_MyTransformerConv_2.gif">
     </td>
   <!-- </tr> -->
