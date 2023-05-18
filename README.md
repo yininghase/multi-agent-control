@@ -72,8 +72,7 @@ Example 1:
     <td>
         <text>
         GAINet         
-        </text>
-        
+        </text> 
     </td>
   </tr>
   <tr>
@@ -93,7 +92,7 @@ Example 1:
   <tr>
     <td>
         <text>
-        TransfConv
+        TransformerConv
         </text>
     </td>
     <td>
