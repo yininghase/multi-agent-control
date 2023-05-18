@@ -60,6 +60,8 @@ The image below shows how the attention changes when the vehicles are moving. We
 
 Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3]. Our model can drive all the vehicles to the destination without colliding with each other while vehicles always collide with other models.
 
+Example 1:
+
 <table style="width: 100%;">
   <tr>
     <td style="width: 50%;">
@@ -115,32 +117,58 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   </tr>
 </table>
 
-<table>
+Example 2:
+
+<table style="width: 100%;">
   <tr>
-    <td>
+    <td style="width: 50%;">
+        <text>
+        Our Model
+        </text>
+    </td>
+    <td style="width: 50%;">
+        <text>
+        TransformerConv
+        </text>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_4.gif">
-            <figcaption>Our Model</figcaption>
+            <!-- <figcaption>Our Model</figcaption> -->
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_TransformerConv_4.gif">
-            <figcaption>TransformerConv</figcaption>
+            <!-- <figcaption>TransformerConv</figcaption> -->
         </figure>
     </td>
-  <!-- </tr> -->
-  <!-- <tr> -->
-    <td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+        <text>
+        GAINet
+        </text>
+    </td>
+    <td style="width: 50%;"
+        <text>
+        EdgeConv
+        </text>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_GAINet_4.gif">
-            <figcaption>GAINet</figcaption>
+            <!-- <figcaption>GAINet</figcaption> -->
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_EdgeConv_4.gif">
-            <figcaption>EdgeConv</figcaption>
+            <!-- <figcaption>EdgeConv</figcaption> -->
         </figure>
     </td>
   </tr>
