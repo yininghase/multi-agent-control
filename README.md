@@ -66,7 +66,7 @@ Example 1:
   <tr>
     <td width="50%">
         <text>
-        Our Model      
+          <strong>Our Model</strong>      
         </text>
     </td>
     <td width="50%">
@@ -123,7 +123,7 @@ Example 2:
   <tr>
     <td width="50%">
         <text>
-        Our Model
+          <strong>Our Model</strong>
         </text>
     </td>
     <td width="50%">
