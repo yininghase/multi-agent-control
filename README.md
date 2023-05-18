@@ -62,7 +62,7 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
 
 Example 1:
 
-<table style="table-layout: fixed;">
+<table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
     <td>
         <text>
