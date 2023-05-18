@@ -60,27 +60,27 @@ The image below shows how the attention changes when the vehicles are moving. We
 
 Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3]. Our model can drive all the vehicles to the destination without colliding with each other while vehicles always collide with other models.
 
-<table>
+<table style="width: 100%;">
   <tr>
-    <td>
+    <td style="width: 50%;">
         <text>
         Our Model
         </text>
     </td>
-    <td>
+    <td style="width: 50%;">
         <text>
         TransformerConv
         </text>
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_1.gif">
             <!-- <figcaption>Our Model</figcaption> -->
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_TransformerConv_1.gif">
             <!-- <figcaption>TransformerConv</figcaption> -->
@@ -88,25 +88,25 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="width: 50%;">
         <text>
         GAINet
         </text>
     </td>
-    <td>
+    <td style="width: 50%;"
         <text>
         EdgeConv
         </text>
     </td>
   </tr>
   <tr>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_GAINet_1.gif">
             <!-- <figcaption>GAINet</figcaption> -->
         </figure>
     </td>
-    <td>
+    <td style="width: 50%;">
         <figure>
             <img src="./images/IterGNN_EdgeConv_1.gif">
             <!-- <figcaption>EdgeConv</figcaption> -->
