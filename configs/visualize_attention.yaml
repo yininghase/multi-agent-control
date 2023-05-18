@@ -20,4 +20,4 @@ test data souce: on the fly
 test data folder: ./data/test_dataset
 test data each case:  
 problem collection: # [num of vehicle, num of obstacle]
-  - [5,1]
+  - [5,0]

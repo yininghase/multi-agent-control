@@ -11,8 +11,8 @@ In this work, we propose a learning based neural model that provides control com
 Clone the repo and build the conda environment:
 
 ```
-conda create -n myenv python=3.7 
-conda activate myenv
+conda create -n <env_name> python=3.7 
+conda activate <env_name>
 pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 pip install --no-index torch-scatter --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
 pip install scipy
@@ -25,17 +25,41 @@ pip install matplotlib
 ```
 
 
-## Show Results of our Model 
+## Results of our Model 
 
-Here we show videos to show the qualitative results of our approach **in different settings**. Although our model is trained with less than 3 vehicles. It can be will generalized to deal with 6 vehicles.
+Here we show results of our model in 4 different scenarios.
 
-<table>
+<table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
+  <tr>
+    <td width="50%">
+        <text>
+          Scenario 1    
+        </text>
+    </td>
+    <td width="50%">
+       <text>
+          Scenario 2    
+        </text>
+    </td>
+  </tr>
   <tr>
     <td>
       <img src="./images/IterGNN_MyTransformerConv_1.gif">
     </td>
     <td>
       <img src="./images/IterGNN_MyTransformerConv_2.gif">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+        <text>
+          Scenario 3    
+        </text>
+    </td>
+    <td width="50%">
+       <text>
+          Scenario 4    
+        </text>
     </td>
   </tr>
   <tr>
@@ -49,16 +73,19 @@ Here we show videos to show the qualitative results of our approach **in differe
 </table>
 
 
-### Show Attention of our Model
+### Attention Mechanism of our Model
 
-The image below shows how the attention changes when the vehicles are moving. We visualize the mean of attention logits from all the graph attention layers of our model. The rows in the attention matrix correspond to the vehicle of interest. The columns show which vehicles/obstacle is being attended to. A lighter shade in the attention matrix depicts high attention and a darker shade represents lack of attention.
+The GIF below shows how the attention changes when the vehicles are moving. We visualize the mean of attention logits from all the graph attention layers of our model. The rows in the attention matrix correspond to the vehicle of interest. The columns show which vehicles/obstacle is being attended to. A lighter shade in the attention matrix depicts high attention and a darker shade represents lack of attention.
 
 ![image](./images/IterGNN_MyTransformerConv_Show_Attention.gif)
 
 
-### Compare with Other GNN Models
+### Comparison with Other Models
 
-Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3]. Our model can drive all the vehicles to the destination without colliding with each other while vehicles always collide with other models.
+Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3] for two different scenarios.
+
+As can be seen, only our model is capable of simultaneously driving all the vehicles to their desired destinations without collision. For all other models, the vehicles collide with each other. 
+
 
 Example 1:
 
@@ -116,6 +143,7 @@ Example 1:
     </td>
   </tr>
 </table>
+
 
 Example 2:
 
@@ -186,8 +214,8 @@ Example 2:
 
 Run visualize_attention.py:
 ```
-conda activate myenv
-cd $path to this repo$
+conda activate <env_name>
+cd <path_to_this_repo>
 python visualize_attention.py
 ```
 
@@ -195,11 +223,14 @@ A window will pump out:
 ![image](./images/Attention_Visualization_Tool.png)
 
 
-Clicking and draging the vehicle or target can change the position of it. 
-Clicking and scrolling the vehicle or target can change the orientation of it.
-Moving the slider on the bar can change the corresponding velocity of the vehicle.
-Clicking and draging the obstacle can change the position of it.
-Clicking and scrolling the obstacle can change the size of it.
+To change the position of the vehicle/destination/obstacle, left click on it and move the mouse. 
 
-You can also change the number of vehicle and num of obstacle in the scene by modifying the problem collection in [configuration](./configs/visualize_attention.yaml#L23)
+To change the orientation of the vehicle/destination, left click on it and move the scroll wheel of the mouse.
+
+To change the velocity of a vehicle, move the slider of the bar corresponding to that vehicle.
+
+To change the size of the obstacle, left click on it and move the scroll wheel of the mouse.
+
+
+You can also change the number of vehicles and obstacles in the scene by modifying the list [here](./configs/visualize_attention.yaml#L23). By default, it is 5 vehicles and 0 obstacle.
 
