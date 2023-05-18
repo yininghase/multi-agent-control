@@ -5,8 +5,6 @@ from torch_geometric.nn import Linear, TransformerConv, EdgeConv
 from itertools import permutations
 
 from my_transformer_conv import MyTransformerConv
-from graph_attention_isomorphism_net import GAINet
-
 
 
 class ConvResidualBlock(torch.nn.Module):
@@ -18,14 +16,6 @@ class ConvResidualBlock(torch.nn.Module):
             self.bn1 = BatchNorm1d(hidden_node_num)
             self.a1 = ReLU()
             self.conv2 = MyTransformerConv(hidden_node_num, io_node_num, key_query_len=key_query_len)
-            self.bn2 = BatchNorm1d(io_node_num)
-            self.a2 = ReLU()
-        
-        elif conv_type == "GAINet":
-            self.conv1 = GAINet(io_node_num, hidden_node_num, key_query_len=key_query_len)
-            self.bn1 = BatchNorm1d(hidden_node_num)
-            self.a1 = ReLU()
-            self.conv2 = GAINet(hidden_node_num, io_node_num, key_query_len=key_query_len)
             self.bn2 = BatchNorm1d(io_node_num)
             self.a2 = ReLU()
         
