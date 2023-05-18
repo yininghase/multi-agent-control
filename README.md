@@ -71,8 +71,9 @@ Example 1:
     </td>
     <td>
         <text>
-        TransfConv
+        GAINet         
         </text>
+        
     </td>
   </tr>
   <tr>
@@ -84,15 +85,15 @@ Example 1:
     </td>
     <td>
         <figure>
-            <img src="./images/IterGNN_TransformerConv_1.gif">
-            <!-- <figcaption>TransformerConv</figcaption> -->
+            <img src="./images/IterGNN_GAINet_1.gif">
+            <!-- <figcaption>GAINet</figcaption> -->
         </figure>
     </td>
   </tr>
   <tr>
     <td>
         <text>
-        GAINet         
+        TransfConv
         </text>
     </td>
     <td>
@@ -104,8 +105,8 @@ Example 1:
   <tr>
     <td>
         <figure>
-            <img src="./images/IterGNN_GAINet_1.gif">
-            <!-- <figcaption>GAINet</figcaption> -->
+            <img src="./images/IterGNN_TransformerConv_1.gif">
+            <!-- <figcaption>TransformerConv</figcaption> -->
         </figure>
     </td>
     <td>
@@ -128,7 +129,7 @@ Example 2:
     </td>
     <td style="width: 50%;">
         <text>
-        TransformerConv
+        GAINet
         </text>
     </td>
   </tr>
@@ -141,15 +142,15 @@ Example 2:
     </td>
     <td style="width: 50%;">
         <figure>
-            <img src="./images/IterGNN_TransformerConv_4.gif">
-            <!-- <figcaption>TransformerConv</figcaption> -->
+            <img src="./images/IterGNN_GAINet_4.gif">
+            <!-- <figcaption>GAINet</figcaption> -->
         </figure>
     </td>
   </tr>
   <tr>
     <td style="width: 50%;">
         <text>
-        GAINet
+        TransformerConv
         </text>
     </td>
     <td style="width: 50%;"
@@ -161,8 +162,8 @@ Example 2:
   <tr>
     <td style="width: 50%;">
         <figure>
-            <img src="./images/IterGNN_GAINet_4.gif">
-            <!-- <figcaption>GAINet</figcaption> -->
+            <img src="./images/IterGNN_TransformerConv_4.gif">
+            <!-- <figcaption>TransformerConv</figcaption> -->
         </figure>
     </td>
     <td style="width: 50%;">
