@@ -149,5 +149,5 @@ Moving the slider on the bar can change the corresponding velocity of the vehicl
 Clicking and draging the obstacle can change the position of it.
 Clicking and scrolling the obstacle can change the size of it.
 
-You can also change the number of vehicle and num of obstacle in the scene by modifying the problem collection in "config/visualize_attention.yaml"
+You can also change the number of vehicle and num of obstacle in the scene by modifying the problem collection in [configuration](./configs/visualize_attention.yaml#L23)
 

@@ -100,12 +100,12 @@ class Visualize_Attention:
 
             self.frame = plt.text(12, 12, "", fontsize=15)
     
-            vehicle_mark, = self.ax.plot([], [], color=self.cmap[i], marker='.', linewidth=1, label=f"color of vehicle {i+1}")
+            vehicle_mark, = self.ax.plot([], [], color=self.cmap[i], marker='.', linewidth=1, label=f"vehicle {i+1}")
         
         for i, obs in enumerate(self.simulation_options["obstacles"]):
             self.patch_obs.append(mpatches.Circle(obs[:2], obs[2], color=self.cmap[i], fill=True))
             self.ax.add_patch(self.patch_obs[-1])
-            obstacle_mark, = self.ax.plot([], [], color=self.cmap[i], marker='.', linewidth=1, label=f"color of obstacle {i+1}")
+            obstacle_mark, = self.ax.plot([], [], color=self.cmap[i], marker='.', linewidth=1, label=f"obstacle {i+1}")
         
           
         self.ax.legend(loc='upper left', fontsize=12)
@@ -154,9 +154,10 @@ class Visualize_Attention:
                     valmin=-2,
                     valmax=3,
                     valinit=self.simulation_options["start"][i, 3],
+                    color=self.cmap[i]
                     # orientation="vertical"
                 ))       
-                
+                                
                 self.update.append(Update(i, self))
                 self.velocity_slider[i].on_changed(self.update[i].update)
             
@@ -202,6 +203,13 @@ class Visualize_Attention:
                                         [f"obstacle {i+1}" for i in range(self.simulation_options["num of obstacles"])])
         self.ax_.set_yticks(ticks=[i for i in range(self.simulation_options["num of vehicles"])],
                             labels = [f"vehicle {i+1}" for i in range(self.simulation_options["num of vehicles"])])
+        
+        for i in range(self.simulation_options["num of vehicles"]):
+            self.ax_.get_xticklabels()[i].set_color(self.cmap[i])
+            self.ax_.get_yticklabels()[i].set_color(self.cmap[i])
+        
+        for i in range(self.simulation_options["num of obstacles"]):
+            self.ax_.get_xticklabels()[i+self.simulation_options["num of vehicles"]].set_color(self.cmap[i])        
         
         # plt.show()
 
