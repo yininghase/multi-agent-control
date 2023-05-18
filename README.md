@@ -66,7 +66,7 @@ Example 1:
   <tr>
     <td style="width: 50%;">
         <text>
-        Our Model
+        Our Model      
         </text>
     </td>
     <td style="width: 50%;">
@@ -92,12 +92,12 @@ Example 1:
   <tr>
     <td style="width: 50%;">
         <text>
-        GAINet
+        GAINet         
         </text>
     </td>
     <td style="width: 50%;"
         <text>
-        EdgeConv
+        EdgeConv        
         </text>
     </td>
   </tr>
