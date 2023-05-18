@@ -62,27 +62,27 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
 
 Example 1:
 
-<table style="width: 100%;">
+<table style="table-layout: fixed;">
   <tr>
-    <td style="width: 50%;">
+    <td>
         <text>
         Our Model      
         </text>
     </td>
-    <td style="width: 50%;">
+    <td>
         <text>
         TransformerConv
         </text>
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_1.gif">
             <!-- <figcaption>Our Model</figcaption> -->
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td>
         <figure>
             <img src="./images/IterGNN_TransformerConv_1.gif">
             <!-- <figcaption>TransformerConv</figcaption> -->
@@ -90,25 +90,25 @@ Example 1:
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <text>
         GAINet         
         </text>
     </td>
-    <td style="width: 50%;"
+    <td>
         <text>
         EdgeConv        
         </text>
     </td>
   </tr>
   <tr>
-    <td style="width: 50%;">
+    <td>
         <figure>
             <img src="./images/IterGNN_GAINet_1.gif">
             <!-- <figcaption>GAINet</figcaption> -->
         </figure>
     </td>
-    <td style="width: 50%;">
+    <td>
         <figure>
             <img src="./images/IterGNN_EdgeConv_1.gif">
             <!-- <figcaption>EdgeConv</figcaption> -->
