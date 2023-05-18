@@ -71,7 +71,7 @@ Example 1:
     </td>
     <td>
         <text>
-        TransformerConv
+        TransfConv
         </text>
     </td>
   </tr>
