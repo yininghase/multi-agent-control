@@ -64,14 +64,14 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
   <tr>
     <td>
         <figure>
-            <img src="./images/IterGNN_TransformerConv_1.gif">
-            <figcaption>TransformerConv</figcaption>
+            <img src="./images/IterGNN_MyTransformerConv_1.gif">
+            <figcaption>Our Model</figcaption>
         </figure>
     </td>
     <td>
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_1.gif">
-            <figcaption>Our Model</figcaption>
+            <img src="./images/IterGNN_TransformerConv_1.gif">
+            <figcaption>TransConv</figcaption>
         </figure>
     </td>
   <!-- </tr> -->
