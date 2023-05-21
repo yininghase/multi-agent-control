@@ -1,7 +1,7 @@
 #  Multi-Agent-Control
-## Multi-Agent Control in Unconstrained Environments using an Attention basedGraphical Neural Network
+## Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller
 
-This repository contains code for the paper **Multi-Agent Control in Unconstrained Environments using an Attention basedGraphical Neural Network** 
+This repository contains code for the paper **Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller** 
 
 In this work, we propose a learning based neural model that provides control commands to simultaneously navigate multiple vehicles. The goal is to ensure that each vehicle reaches a desired target state without colliding with any other vehicle or obstacle in an unconstrained environment. The model utilizes an attention based Graphical Neural Network paradigm that takes into consideration the state of all the surrounding vehicles to make an informed decision. This allows each vehicle to smoothly reach its destination while also evading collision with the other agents. The data and corresponding labels for training such a network is obtained using an optimization based procedure. Experimental results demonstrates that our model is powerful enough to generalize even to situations with more vehicles than in the training data. Our method also outperforms comparable graphical neural network architectures.
 
