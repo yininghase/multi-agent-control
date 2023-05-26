@@ -271,4 +271,4 @@ For the interested reader, we have provided addtional details in the supplementa
 
 - **Breakdown of the training data**
 
-- **Conservative model behaviour**
+- **Conservative optimization behaviour**
