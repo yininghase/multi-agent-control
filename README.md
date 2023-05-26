@@ -261,7 +261,7 @@ You can also change the number of vehicles and obstacles in the scene by modifyi
 
 ## Supplementary 
 
-For the interested reader, we have provided addtional details in the supplementary material [Here](./supplementary.pdf). The supplementary contains the following 
+For the interested reader, we have provided addtional details in the supplementary material [here](./supplementary.pdf). The supplementary contains the following 
 
 - **Details of the U-Net inspired attention mechanism** 
 
