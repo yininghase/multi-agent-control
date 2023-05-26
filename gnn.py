@@ -4,7 +4,7 @@ from numpy import pi
 from torch_geometric.nn import Linear, TransformerConv, EdgeConv
 from itertools import permutations
 
-from my_transformer_conv import MyTransformerConv
+from u_attention_conv import MyTransformerConv
 
 
 class ConvResidualBlock(torch.nn.Module):

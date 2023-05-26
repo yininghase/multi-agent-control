@@ -96,49 +96,59 @@ Example 1:
           <strong>Our Model</strong>      
         </text>
     </td>
+  </tr>
+  <tr>
+    <td width="50%">
+        <figure>
+            <img src="./images/IterGNN_MyTransformerConv_2.gif">
+        </figure>
+    </td>
+  </tr>
+  <tr>
     <td width="50%">
         <text>
         GAINet         
         </text> 
     </td>
-  </tr>
-  <tr>
-    <td width="50%">
-        <figure>
-            <img src="./images/IterGNN_MyTransformerConv_1.gif">
-            <!-- <figcaption>Our Model</figcaption> -->
-        </figure>
-    </td>
-    <td width="50%">
-        <figure>
-            <img src="./images/IterGNN_GAINet_1.gif">
-            <!-- <figcaption>GAINet</figcaption> -->
-        </figure>
-    </td>
-  </tr>
-  <tr>
     <td width="50%">
         <text>
         TransformerConv
         </text>
     </td>
+  </tr>
+  <tr>
+    <td width="50%">
+        <figure>
+            <img src="./images/IterGNN_GAINet_2.gif">
+        </figure>
+    </td>
+    <td width="50%">
+        <figure>
+            <img src="./images/IterGNN_TransformerConv_2.gif">
+        </figure>
+    </td>
+  </tr>
+  <tr>
     <td width="50%">
         <text>
         EdgeConv        
+        </text>
+    </td>
+    <td width="50%">
+        <text>
+        No Graph        
         </text>
     </td>
   </tr>
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_TransformerConv_1.gif">
-            <!-- <figcaption>TransformerConv</figcaption> -->
+            <img src="./images/IterGNN_EdgeConv_2.gif">
         </figure>
     </td>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_EdgeConv_1.gif">
-            <!-- <figcaption>EdgeConv</figcaption> -->
+            <img src="./images/IterGNN_MyTransformerConv_NoEdge_2.gif">
         </figure>
     </td>
   </tr>
@@ -151,12 +161,7 @@ Example 2:
   <tr>
     <td width="50%">
         <text>
-          <strong>Our Model</strong>
-        </text>
-    </td>
-    <td width="50%">
-        <text>
-        GAINet
+          <strong>Our Model</strong>      
         </text>
     </td>
   </tr>
@@ -164,39 +169,54 @@ Example 2:
     <td width="50%">
         <figure>
             <img src="./images/IterGNN_MyTransformerConv_4.gif">
-            <!-- <figcaption>Our Model</figcaption> -->
-        </figure>
-    </td>
-    <td width="50%">
-        <figure>
-            <img src="./images/IterGNN_GAINet_4.gif">
-            <!-- <figcaption>GAINet</figcaption> -->
         </figure>
     </td>
   </tr>
   <tr>
+    <td width="50%">
+        <text>
+        GAINet         
+        </text> 
+    </td>
     <td width="50%">
         <text>
         TransformerConv
         </text>
     </td>
+  </tr>
+  <tr>
+    <td width="50%">
+        <figure>
+            <img src="./images/IterGNN_GAINet_4.gif">
+        </figure>
+    </td>
+    <td width="50%">
+        <figure>
+            <img src="./images/IterGNN_TransformerConv_4.gif">
+        </figure>
+    </td>
+  </tr>
+  <tr>
     <td width="50%">
         <text>
-        EdgeConv
+        EdgeConv        
+        </text>
+    </td>
+    <td width="50%">
+        <text>
+        No Graph        
         </text>
     </td>
   </tr>
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_TransformerConv_4.gif">
-            <!-- <figcaption>TransformerConv</figcaption> -->
+            <img src="./images/IterGNN_EdgeConv_4.gif">
         </figure>
     </td>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_EdgeConv_4.gif">
-            <!-- <figcaption>EdgeConv</figcaption> -->
+            <img src="./images/IterGNN_MyTransformerConv_NoEdge_4.gif">
         </figure>
     </td>
   </tr>
@@ -234,3 +254,7 @@ To change the size of the obstacle, left click on it and move the scroll wheel o
 
 You can also change the number of vehicles and obstacles in the scene by modifying the list [here](./configs/visualize_attention.yaml#L23). By default, it is 5 vehicles and 0 obstacle.
 
+
+## Supplementary 
+
+Here we provide details of the U-Net inspired attention mechanism, ablation studies on the contribution of the different components of the model and run time comparison in our supplementary. 
