@@ -100,10 +100,12 @@ Example 1:
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_2.gif">
+            <img src="./images/IterGNN_MyTransformerConv_3.gif">
         </figure>
     </td>
   </tr>
+</table>
+<table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
     <td width="50%">
         <text>
@@ -119,12 +121,12 @@ Example 1:
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_GAINet_2.gif">
+            <img src="./images/IterGNN_GAINet_3.gif">
         </figure>
     </td>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_TransformerConv_2.gif">
+            <img src="./images/IterGNN_TransformerConv_3.gif">
         </figure>
     </td>
   </tr>
@@ -143,12 +145,12 @@ Example 1:
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_EdgeConv_2.gif">
+            <img src="./images/IterGNN_EdgeConv_3.gif">
         </figure>
     </td>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_NoEdge_2.gif">
+            <img src="./images/IterGNN_MyTransformerConv_NoEdge_3.gif">
         </figure>
     </td>
   </tr>
@@ -172,6 +174,8 @@ Example 2:
         </figure>
     </td>
   </tr>
+</table>
+<table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
     <td width="50%">
         <text>
@@ -257,4 +261,4 @@ You can also change the number of vehicles and obstacles in the scene by modifyi
 
 ## Supplementary 
 
-Here we provide details of the U-Net inspired attention mechanism, ablation studies on the contribution of the different components of the model and run time comparison in our supplementary. 
+[Here](./appendix.pdf) we provide details of the U-Net inspired attention mechanism, ablation studies on the contribution of the different components of the model and run time comparison in our supplementary. 
