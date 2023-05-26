@@ -261,4 +261,4 @@ You can also change the number of vehicles and obstacles in the scene by modifyi
 
 ## Supplementary 
 
-[Here](./appendix.pdf) we provide details of the U-Net inspired attention mechanism, ablation studies on the contribution of the different components of the model and run time comparison in our supplementary. 
+[Here](./appendix.pdf) we provide **details of the U-Net inspired attention mechanism**, **ablation studies on the contribution of the different components of the model** and **run time comparison in our supplementary**. 
