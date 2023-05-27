@@ -82,7 +82,7 @@ The GIF below shows how the attention changes when the vehicles are moving. We v
 
 ### Comparison with Other Models
 
-Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], and **EdgeConv**[3] for two different scenarios.
+Here we show the comparison of our result with  **GAINet**[1] **TransformerConv**[2], **EdgeConv**[3] and **naive MLP model without graphical edge in the structure** for two different scenarios.
 
 As can be seen, only our model is capable of simultaneously driving all the vehicles to their desired destinations without collision. For all other models, the vehicles collide with each other. 
 
@@ -243,7 +243,7 @@ cd <path_to_this_repo>
 python visualize_attention.py
 ```
 
-A window will pump out:
+A window will pop out:
 ![image](./images/Attention_Visualization_Tool.png)
 
 
