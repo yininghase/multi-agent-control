@@ -87,7 +87,7 @@ Here we show the comparison of our result with  **GAINet**[1] **TransformerConv*
 As can be seen, only our model is capable of simultaneously driving all the vehicles to their desired destinations without collision. For all other models, the vehicles collide with each other. 
 
 
-Example 1:
+**Scenario 1**:
 
 <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
@@ -157,7 +157,7 @@ Example 1:
 </table>
 
 
-Example 2:
+**Scenario 2**:
 
 <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
   <tr>
