@@ -312,8 +312,6 @@ def get_obstacles_batch(starts, targets, num_obstacles):
             failed_time += 1
             
         last_failed = np.sum(obstacles_index)
-        
-    del starts_, d, v, h, obstacles_index, targets, starts, v_shift_high, dist, min_dist, h_shift, v_shift, v_flip
     
     obstacles_ = obstacles_.reshape((num_batches, -1, 3))
     
@@ -381,6 +379,141 @@ def get_problem(num_vehicles, num_obstacles, collision = True, parking = False, 
         
     else:
         raise NotImplementedError("Unknown mode of get problem!")
+
+
+def load_data(num_vehicles, num_obstacles, load_all_simpler=True, folders="./data/data_generation", 
+              horizon=0, load_trajectory=False, load_model_prediction=False):
+    '''load data from folder'''
+    data = {}
+    
+    if isinstance(folders, str):
+        folders = [folders]
+    else:
+        assert isinstance(folders, list), \
+            "invalid input of data folders, should be string of list or string"
+    
+    if load_all_simpler:
+        # load all simpler case with less vehicles and obstacles
+        for i in range(1, num_vehicles+1):
+            for j in range(num_obstacles+1):
+                for folder in folders:
+                    X_data_path = os.path.join(folder, f"X_data_vehicle={i}_obstalce={j}.pt")
+                    
+                    if load_model_prediction:
+                        y_data_path = os.path.join(folder, f"y_model_data_vehicle={i}_obstalce={j}.pt")  
+                    else:
+                        y_data_path = os.path.join(folder, f"y_GT_data_vehicle={i}_obstalce={j}.pt")
+                                            
+                    batches_data_path = os.path.join(folder, f"batches_data_vehicle={i}_obstalce={j}.pt")
+                    
+                    if load_trajectory:
+                        trajectory_data_path = os.path.join(folder, f"trajectory_data_vehicle={i}_obstalce={j}.pt")
+                        if not os.path.exists(trajectory_data_path):
+                            continue
+    
+                    if os.path.exists(X_data_path) and os.path.exists(y_data_path) and os.path.exists(batches_data_path):
+                        
+                        new_X_data = torch.load(X_data_path).type(torch.float32)
+                        new_y_data = torch.load(y_data_path).type(torch.float32)
+                        new_batches_data = torch.load(batches_data_path).type(torch.int)
+                        
+                        if isinstance(horizon, int) and horizon>0 and 2*horizon<new_y_data.shape[-1]:
+                            new_y_data = new_y_data[:,:2*horizon]
+                        
+                        if load_trajectory:
+                            new_trajectory_data = torch.load(trajectory_data_path).type(torch.int)
+                        
+                        if (i+j,i) in data.keys():
+                            
+                            if load_trajectory:
+                                X_data, y_data, batches_data, trajectory_data = data[(i+j,i)]
+                            else:
+                                X_data, y_data, batches_data = data[(i+j,i)]
+                            
+                            X_data = torch.cat((X_data, new_X_data))
+                            y_data = torch.cat((y_data, new_y_data))
+                            batches_data = torch.cat((batches_data, new_batches_data))
+                            
+                            if load_trajectory:
+                                trajectory_data = torch.cat((trajectory_data, new_trajectory_data[1:]+trajectory_data[-1]))
+                                data[(i+j,i)] = [X_data, y_data, batches_data, trajectory_data]
+                            
+                            else:
+                                data[(i+j,i)] = [X_data, y_data, batches_data]
+                            
+                        else:
+                            
+                            if load_trajectory:
+                                data[(i+j,i)] = [new_X_data, new_y_data, new_batches_data, new_trajectory_data]
+                            else:
+                                data[(i+j,i)] = [new_X_data, new_y_data, new_batches_data]
+                        
+    else:
+        # load only the case with of given number of vehicles and obstacles
+        
+        i = num_vehicles
+        j = num_obstacles
+        
+        for folder in folders:
+            X_data_path = os.path.join(folder, f"X_data_vehicle={num_vehicles}_obstalce={num_obstacles}.pt")
+            
+            if load_model_prediction:
+                y_data_path = os.path.join(folder, f"y_model_data_vehicle={i}_obstalce={j}.pt")  
+            else:
+                y_data_path = os.path.join(folder, f"y_GT_data_vehicle={i}_obstalce={j}.pt")
+                
+            batches_data_path = os.path.join(folder, f"batches_data_vehicle={num_vehicles}_obstalce={num_obstacles}.pt")
+            
+            if load_trajectory:
+                trajectory_data_path = os.path.join(folder, f"trajectory_data_vehicle={i}_obstalce={j}.pt")
+                if not os.path.exists(trajectory_data_path):
+                    continue
+            
+            if not (os.path.exists(X_data_path) and os.path.exists(y_data_path) and os.path.exists(batches_data_path)):
+                continue
+            
+            new_X_data = torch.load(X_data_path).type(torch.float32)
+            new_y_data = torch.load(y_data_path).type(torch.float32)
+            new_batches_data = torch.load(batches_data_path).type(torch.int)
+            
+            if isinstance(horizon, int) and horizon>0 and 2*horizon<new_y_data.shape[-1]:
+                new_y_data = new_y_data[:,:2*horizon]
+            
+            if load_trajectory:
+                new_trajectory_data = torch.load(trajectory_data_path).type(torch.int)
+            
+            
+            if os.path.exists(X_data_path) and os.path.exists(y_data_path) and os.path.exists(batches_data_path):
+                if (i+j,i) in data.keys():
+                    
+                    if load_trajectory:
+                        X_data, y_data, batches_data, trajectory_data = data[(i+j,i)]
+                    else:
+                        X_data, y_data, batches_data = data[(i+j,i)]
+                    
+                    X_data = torch.cat((X_data, new_X_data))
+                    y_data = torch.cat((y_data, new_y_data))
+                    batches_data = torch.cat((batches_data, new_batches_data))
+                    
+                    if load_trajectory:
+                        trajectory_data = torch.cat((trajectory_data, new_trajectory_data[1:]+trajectory_data[-1]))
+                        data[(i+j,i)] = [X_data, y_data, batches_data, trajectory_data]
+                    
+                    else:
+                        data[(i+j,i)] = [X_data, y_data, batches_data]
+                    
+                else:
+                    
+                    if load_trajectory:
+                        data[(i+j,i)] = [new_X_data, new_y_data, new_batches_data, new_trajectory_data]
+                    else:
+                        data[(i+j,i)] = [new_X_data, new_y_data, new_batches_data]
+
+        assert len(data[(i+j,i)][-1]) > 0,\
+                f"The data with {num_vehicles} vehicles and {num_obstacles} obstacles does not exist!"
+        
+        
+    return data
 
 
 def load_test_data(num_vehicles, num_obstacles, load_all_simpler=True, folders="./data/test_dataset", lim_length=None):

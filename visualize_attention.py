@@ -29,14 +29,9 @@ def inference(config):
     max_num_obstacles = np.amax(problem_collection[:,1])
     config["horizon"] = 1
     
-    if config["use relative frame"]:
-        assert max_num_vehicles == 1, \
-            "relative frame can only be used in 1-vehicle case!"
-
     model = IterativeGNNModel(horizon = config["horizon"],  
                             max_num_vehicles = max_num_vehicles, 
                             max_num_obstacles = max_num_obstacles,
-                            use_relative_frame = config["use relative frame"],
                             mode = "inference",
                             device = device,
                             conv_type = config["convolution type"],
@@ -53,7 +48,7 @@ def inference(config):
         
         test_data = load_test_data(num_vehicles = np.amax(problem_collection[:,0]),
                                     num_obstacles = np.amax(problem_collection[:,1]),
-                                    load_all_simpler = False, #True,
+                                    load_all_simpler = False, 
                                     folders = config["test data folder"],
                                     lim_length = config["test data each case"],
                                     )
@@ -91,15 +86,13 @@ def inference(config):
                                                 parking = config["parking mode"],
                                                 mode = "inference")
             
-        model_name = os.path.basename(config["model path"]).split(".")[0]
-        
-        
         starts[:,3] = np.random.uniform(low=-2, high=3, size=num_vehicles)
         
+        model_name = os.path.basename(config["model path"]).split(".")[0]
         config["start"] = starts
         config["target"] = targets
         config["obstacles"] = obstacles
-        config["name"] = model_name+f"_run_{i}"
+        config["name"] = f"{model_name}_vehicle={num_vehicles}_obstacle={num_obstacles}_run={i}"
         config["num of vehicles"] = num_vehicles
         config["num of obstacles"] = num_obstacles
 

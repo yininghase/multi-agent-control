@@ -1,0 +1,55 @@
+horizon: 15
+simulation time: 150
+simutaion runs: 10
+save failed samples: True
+
+control init: 
+        
+distance cost: 1
+angle cost: 0.5
+collision cost: 200
+collision radius: 5        
+obstacle cost: 200
+obstacle radius: 3
+smoothness cost: 0.1 
+travel dist cost: 0
+        
+position tolerance: 1.0
+angle tolerance: 0.2
+stop tolerance: 0.05
+            
+name: generate_data
+        
+figure size: 8
+figure limit: 30
+ticks step: 5
+car size: 
+  - 1.0
+  - 2.5
+        
+data folder: ./data/trainval_dataset/data_generation_new
+plot folder: ./plots/trainval_dataset/data_generation_new
+
+show plot: False
+save plot: True
+        
+show optimization: True
+random offset: True # include perturbation in each step of simulation
+collect data: True 
+collision mode: True #higher priority than parking mode
+parking mode: False
+        
+collect trajectory: True
+
+problem collection: 
+  - [1, 0]
+  - [1, 1]
+  - [1, 2]
+  - [1, 3]
+  - [1, 4]
+  - [2, 0]
+  - [2, 1]
+  - [2, 2]
+  - [2, 3]
+  - [2, 4]
+  - [3, 0]

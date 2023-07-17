@@ -5,17 +5,26 @@ from torch_geometric.nn import Linear, TransformerConv, EdgeConv
 from itertools import permutations
 
 from u_attention_conv import MyTransformerConv
+from graph_attention_isomorphism_net import GAINet
 
 
 class ConvResidualBlock(torch.nn.Module):
-    def __init__(self, io_node_num, hidden_node_num, key_query_len=512, conv_type="MyTransformerConv"):
+    def __init__(self, io_node_num, hidden_node_num, key_query_len=512, conv_type="UAttentionConv"):
         super().__init__()
         
-        if conv_type == "MyTransformerConv":
+        if conv_type == "UAttentionConv":
             self.conv1 = MyTransformerConv(io_node_num, hidden_node_num, key_query_len=key_query_len)
             self.bn1 = BatchNorm1d(hidden_node_num)
             self.a1 = ReLU()
             self.conv2 = MyTransformerConv(hidden_node_num, io_node_num, key_query_len=key_query_len)
+            self.bn2 = BatchNorm1d(io_node_num)
+            self.a2 = ReLU()
+        
+        elif conv_type == "GAINet":
+            self.conv1 = GAINet(io_node_num, hidden_node_num, key_query_len=key_query_len)
+            self.bn1 = BatchNorm1d(hidden_node_num)
+            self.a1 = ReLU()
+            self.conv2 = GAINet(hidden_node_num, io_node_num, key_query_len=key_query_len)
             self.bn2 = BatchNorm1d(io_node_num)
             self.a2 = ReLU()
         
@@ -99,32 +108,34 @@ class LinearResidualBlock(torch.nn.Module):
        
 
 class IterativeGNNModel(torch.nn.Module):
-    def __init__(self, horizon, max_num_vehicles, max_num_obstacles, use_relative_frame = False, device = 'cpu',
-                 mode = "inference", conv_type="MyTransformerConv"):
+    def __init__(self, horizon, max_num_vehicles, max_num_obstacles, device='cpu',
+                 mode="inference", conv_type="UAttentionConv"):
         super().__init__()
         self.device = device
         self.horizon = horizon
         self.dt = 0.2
-        self.input_length = 5 if use_relative_frame else 8
+        self.input_length = 8
         self.output_length = 2
         self.bound = torch.tensor([1, 0.8]).to(self.device)
-        self.use_relative_frame = use_relative_frame
         self.mode = mode
         self.conv_type = conv_type
+        self.no_vehicle_edges = False
+        
+        if conv_type.split('_')[-1] == "NoVehicleEdges":
+            self.conv_type = conv_type[:-15]
+            self.no_vehicle_edges = True
             
         self.max_num_vehicles = max_num_vehicles
         self.max_num_obstacles = max_num_obstacles
         
-        if use_relative_frame:
-            assert self.max_num_vehicles == 1, \
-                   "relative frame can only be used in one vehicle case!"
-        
         self.edge_template = self.generate_edge_template()
         
         self.block0 = LinearBlock(self.input_length,80)
-        self.block1 = ConvResidualBlock(80,160,conv_type=conv_type)
-        self.block2 = ConvResidualBlock(80,160,conv_type=conv_type)
-        self.block3 = LinearBlock(80, self.output_length, activation="tanh")  
+        self.block1 = ConvResidualBlock(80,160,conv_type=self.conv_type)
+        self.block2 = ConvResidualBlock(80,160,conv_type=self.conv_type)
+        self.block3 = LinearBlock(80, self.output_length, activation="tanh")
+        
+        
     
     def generate_edge_template(self):
         
@@ -195,6 +206,11 @@ class IterativeGNNModel(torch.nn.Module):
         edges_vehicles, edges_obstacles = self.get_edges(batches)
         edges = torch.cat((edges_vehicles, edges_obstacles), dim=-1)
         
+        if self.no_vehicle_edges:
+            edges = edges_obstacles
+        else:
+            edges = torch.cat((edges_vehicles, edges_obstacles), dim=-1)
+        
         if self.mode == "training":
             
             assert self.horizon == 1, \
@@ -225,9 +241,6 @@ class IterativeGNNModel(torch.nn.Module):
             x = x0
             
             for i in range(self.horizon):
-                
-                if self.use_relative_frame:
-                    pass
 
                 x = self.block0(x)                 
                 x = self.block1(x, edges)
@@ -262,8 +275,8 @@ class IterativeGNNModel(torch.nn.Module):
 
     def forward_show_attention(self, x0, batches):
         
-        assert (len(batches) == 1) and self.conv_type == "MyTransformerConv", \
-            "Forward_show_attention only support MyTransformerConv with batch_size == 1!"
+        assert (len(batches) == 1) and self.conv_type == "UAttentionConv", \
+            "Forward_show_attention only support UAttentionConv with batch_size == 1!"
         
         marks = (x0[:,-1])
         vehicles = (marks == 0)

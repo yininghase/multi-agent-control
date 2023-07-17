@@ -1,0 +1,23 @@
+data folder: 
+  - ./data/prediction/IterGNN_UAttentionConv/
+  # - ./data/prediction/IterGNN_TransformerConv/
+  # - ./data/prediction/IterGNN_EdgeConv/
+  # - ./data/prediction/IterGNN_GAINet/
+  # - ./data/prediction/IterGNN_UAttentionConv_NoVehicleEdges/",
+                                     
+result parallel with edges: 
+  - ./data/prediction/IterGNN_MyTransformerConv/
+
+result sequential without edges: 
+  - ./data/prediction/IterGNN_MyTransformerConv_NoVehicleEdges/
+
+number of vehicles: 10
+num of obstacles: 4
+
+car size: 
+  - 1.0
+  - 2.5
+
+position tolerance: 1.25
+angle tolerance: 0.2
+stop tolerance: 0.05

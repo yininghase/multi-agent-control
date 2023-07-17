@@ -1,0 +1,27 @@
+horizon: 1
+
+train max epochs: 500
+train patience: 15
+batch size: 4096
+        
+initial learning rate: 0.01
+weight decay: 0.000001
+
+learning rate patience: 10
+learning rate factor: 0.2
+min learining rate: 0.00000001
+        
+data folder: 
+  - ./data/trainval_dataset/data_generation_1
+  - ./data/trainval_dataset/data_generation_2
+  - ./data/trainval_dataset/data_generation_3  
+        
+model folder: ./models 
+        
+model name: My_IterGNN_UAttentionConv
+convolution type: UAttentionConv # UAttentionConv, TransformerConv, EdgeConv or GAINet
+number of vehicles: 3
+num of obstacles: 4
+        
+pretrained model: 
+augmentation: False
