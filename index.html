@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" /> -->
+  <!-- <meta property="og:image:width" content="1200"/> -->
+  <!-- <meta property="og:image:height" content="630"/> -->
+
+
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG"> -->
+  <!-- <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+  <!-- <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Multi-autonomous Vehicle Studies, Models, Techniques and Simulations; Automated Vehicle Operation, Motion Planning, Navigation; Cooperative Techniques and Systems ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.icon">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a>Yining Ma</a>,</span>
+                <span class="author-block">
+                  <a href="https://cvg.cit.tum.de/members/khamuham" target="_blank">Qadeer Khan</a>,</span>
+                  <span class="author-block">
+                    <a href="https://cvg.cit.tum.de/members/cremers" target="_blank">Daniel Cremers</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Technical University of Munich<br>IEEE International Conference on Intelligent Transportation Systems ITSC 2023</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <span class="link-block">
+                      <a href="supplementary.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/yininghase/multi-agent-control" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Results of our Model</h2>
+      <div id="results-carousel" class="carousel results-carousel" data-interval="30">
+        <div class="item">
+          <h2 class="subtitle has-text-centered">
+            Scenario 1: 6 Vehicles and 1 Obstacle
+          </h2>
+          <div class="columns is-four-fifths is-centered">
+            <img src="images/IterGNN_MyTransformerConv_1.gif" alt="MY ALT TEXT"/>
+          </div>
+        </div>
+        <div class="item">
+          <h2 class="subtitle has-text-centered">
+            Scenario 2: 6 Vehicles and 2 Obstacles
+          </h2>
+          <div class="columns is-four-fifths is-centered">
+            <img src="images/IterGNN_MyTransformerConv_2.gif" alt="MY ALT TEXT"/>
+          </div>
+        </div>
+        <div class="item">
+          <h2 class="subtitle has-text-centered">
+            Scenario 3: 6 Vehicles and 3 Obstacles
+          </h2>
+          <div class="columns is-four-fifths is-centered">
+            <img src="images/IterGNN_MyTransformerConv_3.gif" alt="MY ALT TEXT"/>
+          </div>
+        </div>
+        <div class="item">
+          <h2 class="subtitle has-text-centered">
+            Scenario 4: 6 Vehicles and 3 Obstacles
+          </h2>
+          <div class="columns is-four-fifths is-centered">
+            <img src="images/IterGNN_MyTransformerConv_4.gif" alt="MY ALT TEXT"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Attention Mechanism of our Model</h2>
+      <div class="columns is-centered is-four-fifths">
+        <div class="column is-four-fifths is-centered">
+            <img src="images/IterGNN_MyTransformerConv_Show_Attention.gif" alt="MY ALT TEXT"/>
+        </div> 
+      </div>
+      <h2>
+        The GIF above shows how the attention changes when the vehicles are moving. We visualize the mean of attention logits from all the graph attention layers of our model. The rows in the attention matrix correspond to the vehicle of interest. The columns show which vehicles/obstacle is being attended to. A lighter shade in the attention matrix depicts high attention and a darker shade represents lack of attention.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Comparison with Other Models</h2>
+      <div id="results-carousel" class="carousel results-carousel" data-interval="30">
+        <div class="item">
+          <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
+              <td width="52%">
+                <div class="container">
+                  <h2 class="subtitle has-text-centered"> Our Model</h2>
+                  <div class="columns is-centered">
+                    <img src="./images/IterGNN_MyTransformerConv_3.gif">
+                  </div>
+                </div> 
+              </td>
+              <td width="48%">
+                <div class="container">
+                  <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;">
+                      <tr>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered"> GAINet</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_GAINet_3.gif">
+                            </div>
+                          </div>
+                        </td>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered"> TransformerConv</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_TransformerConv_3.gif">
+                            </div>
+                          </div> 
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered">EdgeConv</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_EdgeConv_3.gif">
+                            </div>
+                          </div> 
+                        </td>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered">No Edge</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_MyTransformerConv_NoEdge_3.gif">
+                            </div>
+                          </div> 
+                        </td>
+                      </tr>
+                  </table>
+                </div>
+              </td>
+          </table>
+        </div>
+        <div class="item">
+          <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;" width="100%">
+              <td width="52%">
+                <div class="container">
+                  <h2 class="subtitle has-text-centered"> Our Model</h2>
+                  <div class="columns is-centered">
+                    <img src="./images/IterGNN_MyTransformerConv_4.gif">
+                  </div>
+                </div> 
+              </td>
+              <td width="48%">
+                <div class="container">
+                  <table style="table-layout: fixed; word-break: break-all; word-wrap: break-word;">
+                      <tr>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered"> GAINet</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_GAINet_4.gif">
+                            </div>
+                          </div>
+                        </td>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered"> TransformerConv</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_TransformerConv_4.gif">
+                            </div>
+                          </div> 
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered">EdgeConv</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_EdgeConv_4.gif">
+                            </div>
+                          </div> 
+                        </td>
+                        <td width="24%">
+                          <div class="container">
+                            <h2 class="subtitle has-text-centered">No Edge</h2>
+                            <div class="columns is-centered is-four-fifths">
+                              <img src="./images/IterGNN_MyTransformerConv_NoEdge_4.gif">
+                            </div>
+                          </div> 
+                        </td>
+                      </tr>
+                  </table>
+                </div>
+              </td>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> under the license <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. We thank the authors for the open-source code.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
