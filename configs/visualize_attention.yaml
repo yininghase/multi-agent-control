@@ -1,4 +1,9 @@
+# config for simulation
 simulation runs: 1
+convolution type: UAttentionConv # only support UAttentionConv
+model path: ./models/IterGNN_UAttentionConv.pth
+
+# config for visualization 
 figure size: 8
 figure limit: 30
 ticks step: 5
@@ -6,15 +11,17 @@ car size:
   - 1.0 
   - 2.5
 
-model path: ./models/IterGNN_UAttentionConv.pth
+# config for test data
+test data souce: on the fly # choose from ["fixed test data" (use fixed test dataset), "on the fly" (randomly generate test case)]
 
-convolution type: UAttentionConv
-
+## config for test data generation
 collision mode: True # higher priority than parking mode
 parking mode: False
 
-test data souce: on the fly 
+## config for fixed test data
 test data folder: ./data/test_dataset
-test data each case:  
+test data each case: # keep it empty to use all test dataset or give a number to use partial test dataset
+
+## problem collection
 problem collection: # [num of vehicle, num of obstacle]
   - [5,0]

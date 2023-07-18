@@ -4,15 +4,17 @@ data folder:
   # - ./data/prediction/IterGNN_EdgeConv/
   # - ./data/prediction/IterGNN_GAINet/
   # - ./data/prediction/IterGNN_UAttentionConv_NoVehicleEdges/",
-                                     
+
+#### config for calculate step efficiency ####                                   
 result parallel with edges: 
-  - ./data/prediction/IterGNN_MyTransformerConv/
+  - ./data/prediction/IterGNN_UAttentionConv/
 
 result sequential without edges: 
-  - ./data/prediction/IterGNN_MyTransformerConv_NoVehicleEdges/
+  - ./data/prediction/IterGNN_UAttentionConv_NoVehicleEdges/
+#### end config for calculate step efficiency ####   
 
-number of vehicles: 10
-num of obstacles: 4
+number of vehicles: 10 # max number of vehicle in prediction dataset
+num of obstacles: 4 # max number of obstacle in prediction dataset
 
 car size: 
   - 1.0
