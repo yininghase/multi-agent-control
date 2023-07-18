@@ -1,9 +1,21 @@
-horizon: 15
-simulation time: 150
-simutaion runs: 10
+# config for simulation
+horizon: 15 # prediction horizon for MPC
+simulation time: 150 # number of iteration for each simulation
+simutaion runs: 3000 # number of simulation
 save failed samples: True
 
-control init: 
+position tolerance: 1.0
+angle tolerance: 0.2
+stop tolerance: 0.05
+
+random offset: True # include perturbation in each step of simulation
+collect data: True 
+collect trajectory: True
+data folder: ./data/trainval_dataset/data_generation_new
+show optimization: True # enable running of MPC, keep it as True for data generation
+
+# config for MPC model
+control init: # keep it empty for no initialization for MPC
         
 distance cost: 1
 angle cost: 0.5
@@ -12,36 +24,24 @@ collision radius: 5
 obstacle cost: 200
 obstacle radius: 3
 smoothness cost: 0.1 
-travel dist cost: 0
-        
-position tolerance: 1.0
-angle tolerance: 0.2
-stop tolerance: 0.05
-            
-name: generate_data
-        
+travel dist cost: 0        
+
+# config for visualization        
 figure size: 8
 figure limit: 30
 ticks step: 5
 car size: 
   - 1.0
   - 2.5
-        
-data folder: ./data/trainval_dataset/data_generation_new
-plot folder: ./plots/trainval_dataset/data_generation_new
-
 show plot: False
 save plot: True
-        
-show optimization: True
-random offset: True # include perturbation in each step of simulation
-collect data: True 
-collision mode: True #higher priority than parking mode
-parking mode: False
-        
-collect trajectory: True
+plot folder: ./plots/trainval_dataset/data_generation_new
 
-problem collection: 
+# config for data generation
+collision mode: True # higher priority than parking mode
+parking mode: False      
+
+problem collection: # [num of vehicle, num of obstacle]
   - [1, 0]
   - [1, 1]
   - [1, 2]

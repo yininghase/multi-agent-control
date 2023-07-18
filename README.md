@@ -44,10 +44,10 @@ Here we show results of our model in 4 different scenarios.
   </tr>
   <tr>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_1.gif">
+      <img src="./images/IterGNN_UAttentionConv_1.gif">
     </td>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_2.gif">
+      <img src="./images/IterGNN_UAttentionConv_2.gif">
     </td>
   </tr>
   <tr>
@@ -64,10 +64,10 @@ Here we show results of our model in 4 different scenarios.
   </tr>
   <tr>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_3.gif">
+      <img src="./images/IterGNN_UAttentionConv_3.gif">
     </td>
     <td>
-      <img src="./images/IterGNN_MyTransformerConv_4.gif">
+      <img src="./images/IterGNN_UAttentionConv_4.gif">
     </td>
   </tr>
 </table>
@@ -77,7 +77,7 @@ Here we show results of our model in 4 different scenarios.
 
 The GIF below shows how the attention changes when the vehicles are moving. We visualize the mean of attention logits from all the graph attention layers of our model. The rows in the attention matrix correspond to the vehicle of interest. The columns show which vehicles/obstacle is being attended to. A lighter shade in the attention matrix depicts high attention and a darker shade represents lack of attention.
 
-![image](./images/IterGNN_MyTransformerConv_Show_Attention.gif)
+![image](./images/IterGNN_UAttentionConv_Show_Attention.gif)
 
 
 ### Comparison with Other Models
@@ -100,7 +100,7 @@ As can be seen, only our model is capable of simultaneously driving all the vehi
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_3.gif">
+            <img src="./images/IterGNN_UAttentionConv_3.gif">
         </figure>
     </td>
   </tr>
@@ -150,7 +150,7 @@ As can be seen, only our model is capable of simultaneously driving all the vehi
     </td>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_NoEdge_3.gif">
+            <img src="./images/IterGNN_UAttentionConv_NoEdge_3.gif">
         </figure>
     </td>
   </tr>
@@ -170,7 +170,7 @@ As can be seen, only our model is capable of simultaneously driving all the vehi
   <tr>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_4.gif">
+            <img src="./images/IterGNN_UAttentionConv_4.gif">
         </figure>
     </td>
   </tr>
@@ -220,7 +220,7 @@ As can be seen, only our model is capable of simultaneously driving all the vehi
     </td>
     <td width="50%">
         <figure>
-            <img src="./images/IterGNN_MyTransformerConv_NoEdge_4.gif">
+            <img src="./images/IterGNN_UAttentionConv_NoEdge_4.gif">
         </figure>
     </td>
   </tr>

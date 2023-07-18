@@ -1,7 +1,23 @@
-horizon: 20
-simulation time: 200
-simulation runs: 2
-simulation patience: 5
+# config for simulation
+horizon: 1 # keep it as 1 for GNN inference
+simulation time: 200 # number of iteration for each simulation
+simulation runs: 2 # number of simulation
+show optimization: False # disable running of MPC, keep it as False for GNN inference
+random offset: False # keep it as False for GNN inference
+
+convolution type: UAttentionConv # choose from ["UAttentionConv", "TransformerConv", "EdgeConv", "GAINet" 
+                                 # or f"{$Network_Arch_Above$}_NoVehicleEdges" (for the test of step efficiency)]
+model path: ./models/IterGNN_UAttentionConv.pth # path to the model
+
+collect data: True, 
+collect trajectory: True
+data folder: ./data/prediction # path to save prediction results of the model
+
+position tolerance: 1.0
+angle tolerance: 0.2
+stop tolerance: 0.05
+
+# config for MPC model
 control init: 
 
 distance cost: 1
@@ -13,42 +29,29 @@ obstacle radius: 5
 smoothness cost: 0.1 
 travel dist cost: 0
 
-position tolerance: 1.0
-angle tolerance: 0.2
-stop tolerance: 0.05
-
+# config for visualization 
 figure size: 8
 figure limit: 30
 ticks step: 5
 car size: 
   - 1.0
   - 2.5
-num of vehicles: 
-num of obstacles: 
-
-data folder: ./data/prediction
-model path: ./models/IterGNN_UAttentionConv.pth
-
-convolution type: UAttentionConv # UAttentionConv, TransformerConv, EdgeConv, GAINet 
-                                 # or {$Network_Arch$}_NoVehicleEdges (for the test of step efficiency)
-
-plot folder: ./plots/prediction
 show plot: False
 save plot: True 
+plot folder: ./plots/prediction
 
-show optimization: False
-random offset: False 
+# config for test data
+test data souce: on the fly # choose from ["fixed test data" (use fixed test dataset), "on the fly" (randomly generate test case)]
 
+## config for test data generation
 collision mode: True # higher priority than parking mode
 parking mode: False
 
-collect data: True, 
-collect trajectory: True
-
-test data souce: on the fly # fixed test data, on the fly
+## config for fixed test data
 test data folder: ./data/test_dataset
-test data each case:
+test data each case: # keep it empty to use all test dataset or give a number to use partial test dataset
 
+## problem collection
 problem collection: # [num of vehicle, num of obstacle]
   - [1, 0]
   - [1, 1]

@@ -1,4 +1,5 @@
-horizon: 1
+# config for training
+horizon: 1 # keep it as 1 for GNN training
 
 train max epochs: 500
 train patience: 15
@@ -10,18 +11,21 @@ weight decay: 0.000001
 learning rate patience: 10
 learning rate factor: 0.2
 min learining rate: 0.00000001
-        
+
+# config for dataset
+number of vehicles: 3 # max number of vehicle in trainval dataset
+num of obstacles: 4 # max number of obstacle in trainval dataset 
 data folder: 
   - ./data/trainval_dataset/data_generation_1
   - ./data/trainval_dataset/data_generation_2
   - ./data/trainval_dataset/data_generation_3  
-        
-model folder: ./models 
-        
-model name: My_IterGNN_UAttentionConv
-convolution type: UAttentionConv # UAttentionConv, TransformerConv, EdgeConv or GAINet
-number of vehicles: 3
-num of obstacles: 4
-        
-pretrained model: 
+
 augmentation: False
+
+# config for model
+model folder: ./models     
+model name: My_IterGNN_UAttentionConv
+convolution type: UAttentionConv # choose from [UAttentionConv, TransformerConv, EdgeConv, GAINet]
+   
+pretrained model: # leave it empty or give the path to the pretrained model
+
