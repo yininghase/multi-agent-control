@@ -71,7 +71,7 @@ def inference(config):
             "The test data folder does not exist!"
         
         test_data = load_test_data(num_vehicles = problem_collection[0,0],
-                                    num_obstacles = problem_collection[:,1],
+                                    num_obstacles = problem_collection[0,1],
                                     load_all_simpler = False, 
                                     folders = config["test data folder"],
                                     lim_length = config["test data each case"],
