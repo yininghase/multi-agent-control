@@ -1,4 +1,5 @@
 # config for simulation
+horizon: 1 # keep it as 1 for GNN inference
 simulation runs: 1
 convolution type: UAttentionConv # only support UAttentionConv
 model path: ./models/IterGNN_UAttentionConv.pth

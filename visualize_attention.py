@@ -17,21 +17,18 @@ def inference(config):
     
     
     problem_collection = np.array(config['problem collection'])
-    assert problem_collection.shape[1] == 2 and \
-        len(problem_collection.shape) == 2 and \
+    assert problem_collection.shape == (1,2) and \
         np.amin(problem_collection[:,0]) >= 1 and \
         np.amin(problem_collection[:,1]) >= 0, \
         "Invalid input of problem_collection!"
     
     model_name = os.path.basename(config["model path"]).split(".")[0]
 
-    max_num_vehicles = np.amax(problem_collection[:,0])
-    max_num_obstacles = np.amax(problem_collection[:,1])
-    config["horizon"] = 1
+    assert config["horizon"] == 1, "keep horizon as 1 for GNN inference!"
     
     model = IterativeGNNModel(horizon = config["horizon"],  
-                            max_num_vehicles = max_num_vehicles, 
-                            max_num_obstacles = max_num_obstacles,
+                            max_num_vehicles = problem_collection[0,0], 
+                            max_num_obstacles = problem_collection[0,1],
                             mode = "inference",
                             device = device,
                             conv_type = config["convolution type"],
@@ -46,8 +43,8 @@ def inference(config):
         assert os.path.exists(config["test data folder"]), \
             "The test data folder does not exist!"
         
-        test_data = load_test_data(num_vehicles = np.amax(problem_collection[:,0]),
-                                    num_obstacles = np.amax(problem_collection[:,1]),
+        test_data = load_test_data(num_vehicles = problem_collection[0,0],
+                                    num_obstacles = problem_collection[0,1],
                                     load_all_simpler = False, 
                                     folders = config["test data folder"],
                                     lim_length = config["test data each case"],
