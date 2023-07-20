@@ -9,7 +9,7 @@ convolution type: UAttentionConv # choose from ["UAttentionConv", "TransformerCo
                                  # or f"{$Network_Arch_Above$}_NoVehicleEdges" (for the test of step efficiency)]
 model path: ./models/IterGNN_UAttentionConv.pth # path to the model
 
-collect data: True, 
+collect data: True
 collect trajectory: True
 data folder: ./data/prediction # path to save prediction results of the model
 
