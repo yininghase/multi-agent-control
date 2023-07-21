@@ -366,14 +366,13 @@ def get_problem(num_vehicles, num_obstacles, collision = True, parking = False, 
         
         obstacles = get_obstacles_batch(vehicles[...,:2], vehicles[...,4:6], num_obstacles)
         
-        if mode == "generate test data":
-            vehicles[:,:,3] = 0
-            vehicles = np.concatenate((vehicles, 
-                                       np.zeros((vehicles.shape[0], vehicles.shape[1],1))), axis=-1)
-            obstacles = np.concatenate((np.zeros((obstacles.shape[0], obstacles.shape[1],4)),
-                                        obstacles,
-                                        np.ones((obstacles.shape[0], obstacles.shape[1],1)),
-                                        ), axis=-1)
+        vehicles[:,:,3] = 0
+        vehicles = np.concatenate((vehicles, 
+                                    np.zeros((vehicles.shape[0], vehicles.shape[1],1))), axis=-1)
+        obstacles = np.concatenate((np.zeros((obstacles.shape[0], obstacles.shape[1],4)),
+                                    obstacles,
+                                    np.ones((obstacles.shape[0], obstacles.shape[1],1)),
+                                    ), axis=-1)
 
         return vehicles, obstacles
         

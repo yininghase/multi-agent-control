@@ -21,7 +21,7 @@ def length(data):
     return length
         
 
-def generate_data(config):
+def generate_trainval_data(config):
     '''function to collect training data for supervised learning'''
     
     if not os.path.exists(config["data folder"]):
@@ -128,13 +128,13 @@ def generate_data(config):
 if __name__ == "__main__":
     
     parser = ArgumentParser()
-    parser.add_argument('--config_path', type=str, default="./configs/generate_data.yaml", help='specify configuration path')
+    parser.add_argument('--config_path', type=str, default="./configs/generate_trainval_data.yaml", help='specify configuration path')
     args = parser.parse_args()
     
     config_path= args.config_path
     config = load_yaml(config_path)
     
-    generate_data(config)
+    generate_trainval_data(config)
    
 
 
