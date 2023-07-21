@@ -149,7 +149,7 @@ def inference(config):
     average_run_time_per_task = np.mean(time_list)
     print(f"Average run time per task: {average_run_time_per_task}")
     average_run_time_per_step = np.sum(time_list)/np.sum(num_step_list)
-    print(f"Average run time per task: {average_run_time_per_step}")
+    print(f"Average run time per step: {average_run_time_per_step}")
         
         
 
