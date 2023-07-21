@@ -11,7 +11,7 @@ In this work, we propose a learning based neural model that provides control com
 
 Here we show our proposed UAttention Convolution Block.
 
-![image](./images/U-Attention Block.jpg)
+![image](./images/U-Attention_Block.jpg)
 
 
 ## Results of our Model 
@@ -265,6 +265,8 @@ data
 |   |   |-- X_data_vehicle={i}_obstalce={j}.pt
 |   |   |-- y_model_data_vehicle={i}_obstalce={j}.pt
 |   |   |-- trajectory_data_data_vehicle={i}_obstalce={j}.pt
+|-- |-- {MODEL_NAME_2}
+|-- |-- ...
 
 ```
 
