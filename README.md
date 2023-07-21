@@ -11,7 +11,7 @@ In this work, we propose a learning based neural model that provides control com
 
 Here we show our proposed UAttention Convolution Block.
 
-![image](./images/U-Attention_Block.jpg)
+![image](./images/U-Attention_Block.png)
 
 
 ## Results of our Model 
