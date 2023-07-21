@@ -432,8 +432,6 @@ if __name__ == "__main__":
         print("*"*10)
     
     
-    
-    
     if not isinstance(config["result parallel with edges"], str):
         parallel_with_edges = config["result parallel with edges"].copy()
         sequential_without_edges = config["result sequential without edges"].copy()
@@ -450,14 +448,15 @@ if __name__ == "__main__":
             
             config["result parallel with edges"] = parallel_with_edges_i
             config["result sequential without edges"] = sequential_without_edges_i
-        
+            print(f"Currently calculating step efficiency of {parallel_with_edges_i}: ")
             calculate_step_efficiency(config)
+            print("*"*10)
     
     else:
-        parallel_with_edges = config["result parallel with edges"].copy()
-        sequential_without_edges = config["result sequential without edges"].copy()
+        parallel_with_edges = config["result parallel with edges"]
+        sequential_without_edges = config["result sequential without edges"]
         assert os.path.basename(parallel_with_edges)+'_NoVehicleEdges' == os.path.basename(sequential_without_edges), \
             '"result parallel with edges" and "result sequential without edges" should match!'
-        
+        print(f"Currently calculating step efficiency of {parallel_with_edges}: ")
         calculate_step_efficiency(config)
-    
+        print("*"*10)
