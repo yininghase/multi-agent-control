@@ -430,6 +430,34 @@ if __name__ == "__main__":
         print(f"Currently evaluating {config['data folder']}: ")
         calculate_metrics(config)
         print("*"*10)
+    
+    
+    
+    
+    if not isinstance(config["result parallel with edges"], str):
+        parallel_with_edges = config["result parallel with edges"].copy()
+        sequential_without_edges = config["result sequential without edges"].copy()
         
-    calculate_step_efficiency(config)
+        assert len(parallel_with_edges) == len(sequential_without_edges), \
+            '"result parallel with edges" and "result sequential without edges" should match!'
+        
+        for i in range(len(parallel_with_edges)):
+            parallel_with_edges_i = parallel_with_edges[i]
+            sequential_without_edges_i = sequential_without_edges[i]
+            
+            assert os.path.basename(parallel_with_edges_i)+'_NoVehicleEdges' == os.path.basename(sequential_without_edges_i), \
+            '"result parallel with edges" and "result sequential without edges" should match!'
+            
+            config["result parallel with edges"] = parallel_with_edges_i
+            config["result sequential without edges"] = sequential_without_edges_i
+        
+            calculate_step_efficiency(config)
+    
+    else:
+        parallel_with_edges = config["result parallel with edges"].copy()
+        sequential_without_edges = config["result sequential without edges"].copy()
+        assert os.path.basename(parallel_with_edges)+'_NoVehicleEdges' == os.path.basename(sequential_without_edges), \
+            '"result parallel with edges" and "result sequential without edges" should match!'
+        
+        calculate_step_efficiency(config)
     

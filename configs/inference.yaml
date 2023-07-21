@@ -6,11 +6,11 @@ show optimization: False # disable running of MPC, keep it as False for GNN infe
 random offset: False # keep it as False for GNN inference
 
 convolution type: UAttentionConv # choose from ["UAttentionConv", "TransformerConv", "EdgeConv", "GAINet" 
-                                 # or f"{$Network_Arch_Above$}_NoVehicleEdges" (for the test of step efficiency)]
+                                 # or "{$Network_Arch_Above$}_NoVehicleEdges" (for the test of step efficiency)]
 model path: ./models/IterGNN_UAttentionConv.pth # path to the model
 
-collect data: True
-collect trajectory: True
+collect data: True # keep it True if you need to calculate metrics for the inference result 
+collect trajectory: True # keep it True if you need to calculate metrics for the inference result 
 data folder: ./data/prediction # path to save prediction results of the model
 
 position tolerance: 1.0
@@ -48,6 +48,7 @@ collision mode: True # higher priority than parking mode
 parking mode: False
 
 ## config for fixed test data
+# Note: if you want to compare the performance of different models, you should fix the test dataset
 test data folder: ./data/test_dataset
 test data each case: # keep it empty to use all test dataset or give a number to use partial test dataset
 

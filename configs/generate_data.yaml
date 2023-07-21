@@ -9,7 +9,7 @@ angle tolerance: 0.2
 stop tolerance: 0.05
 
 random offset: True # include perturbation in each step of simulation
-collect data: True 
+collect data: True # keep it True for collecting training data
 collect trajectory: True
 data folder: ./data/trainval_dataset/data_generation_new
 show optimization: True # enable running of MPC, keep it as True for data generation

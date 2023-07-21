@@ -5,24 +5,13 @@ This repository contains code for the paper **Multi Agent Navigation in Unconstr
 
 In this work, we propose a learning based neural model that provides control commands to simultaneously navigate multiple vehicles. The goal is to ensure that each vehicle reaches a desired target state without colliding with any other vehicle or obstacle in an unconstrained environment. The model utilizes an attention based Graphical Neural Network paradigm that takes into consideration the state of all the surrounding vehicles to make an informed decision. This allows each vehicle to smoothly reach its destination while also evading collision with the other agents. The data and corresponding labels for training such a network is obtained using an optimization based procedure. Experimental results demonstrates that our model is powerful enough to generalize even to situations with more vehicles than in the training data. Our method also outperforms comparable graphical neural network architectures.
 
+![image](./images/overview.jpg)
 
-## Environment
+## UAttention Convolution Block 
 
-Clone the repo and build the conda environment:
+Here we show our proposed UAttention Convolution Block.
 
-```
-conda create -n <env_name> python=3.7 
-conda activate <env_name>
-pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
-pip install --no-index torch-scatter --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
-pip install scipy
-pip install --no-index torch-sparse --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
-pip install --no-index torch-cluster --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
-pip install --no-index torch-spline-conv --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
-pip install torch-geometric==2.0.4
-pip install pyyaml
-pip install matplotlib
-```
+![image](./images/U-Attention Block.jpg)
 
 
 ## Results of our Model 
@@ -232,6 +221,105 @@ As can be seen, only our model is capable of simultaneously driving all the vehi
 [2]: Shi, Y., Huang, Z., Feng, S., Zhong, H., Wang, W., and Sun,Y. **Masked label prediction:  Unified message passing model for semi-supervised classification**. arXiv preprint arXiv:2009.03509, 2020.
 
 [3]: Yue, W., Yongbin, S., Ziwei, L., Sarma, S. E., and Bronstein, M. M. **Dynamic graph cnn for learning on point clouds**. Acm Transactions On Graphics (tog), 38(5), 2019.
+
+
+## Environment
+
+Clone the repo and build the conda environment:
+```
+conda create -n <env_name> python=3.7 
+conda activate <env_name>
+pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+pip install --no-index torch-scatter --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
+pip install scipy
+pip install --no-index torch-sparse --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
+pip install --no-index torch-cluster --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
+pip install --no-index torch-spline-conv --no-cache-dir -f https://pytorch-geometric.com/whl/torch-1.11.0+cu113.html
+pip install torch-geometric==2.0.4
+pip install pyyaml
+pip install matplotlib
+```
+
+
+## Data Structure
+
+Please organize the data structure as follows:
+```
+data
+|-- trainval_dataset
+|   |-- data_generation_1
+|   |   |-- batches_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- X_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- y_GT_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- trajectory_data_data_vehicle={i}_obstalce={j}.pt (not neccesary for trainval dataset)
+|   |   |-- ...
+|   |-- data_generation_2
+|   |-- data_generation_3
+|   |-- ...
+|-- test_dataset
+|-- |-- test_data_vehicle={i}_obstalce={j}.pt
+|-- |-- ...
+!-- prediction
+|-- |-- {MODEL_NAME_1}
+|   |   |-- batches_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- X_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- y_model_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- trajectory_data_data_vehicle={i}_obstalce={j}.pt
+
+```
+
+
+## Pipeline
+### Data Generation with Optimization Method
+
+Modify the [config of generate data](./configs/generate_data.yaml) under your demand.
+
+Run the generate_data.py:
+```
+conda activate <env_name>
+cd <path_to_this_repo>
+python generate_data.py
+```
+
+### GNN Model Training
+
+Modify the [config of model training](./configs/train.yaml) under your demand.
+
+Run the train.py:
+```
+conda activate <env_name>
+cd <path_to_this_repo>
+python train.py
+```
+
+### GNN Model Inference
+
+Modify the [config of model inference](./configs/inference.yaml) under your demand.
+
+Run the inference.py:
+```
+conda activate <env_name>
+cd <path_to_this_repo>
+python inference.py
+```
+
+### GNN Model Evaluation
+
+Modify the [config of model evaluation](./configs/calculate_metrics.yaml) under your demand.
+
+Run the calculate_metrics.py:
+```
+conda activate <env_name>
+cd <path_to_this_repo>
+python calculate_metrics.py
+```
+
+Note: 
+
+If you want to compare the performance of different models, you should fix the test dataset. 
+
+If you want to calculate step efficiency of a model, you should run inference of a model with mode of "NoVehicleEdges". 
+(see [config of model inference](./configs/inference.yaml) for more details)
 
 
 ## Tool for Visualizing Attention 
