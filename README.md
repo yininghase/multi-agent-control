@@ -366,7 +366,7 @@ To change the velocity of a vehicle, move the slider of the bar corresponding to
 To change the size of the obstacle, left click on it and move the scroll wheel of the mouse.
 
 
-You can also change the number of vehicles and obstacles in the scene by modifying the list [here](./configs/visualize_attention.yaml#L23). By default, it is 5 vehicles and 0 obstacle.
+You can also change the number of vehicles and obstacles in the scene by modifying the list [here](./configs/visualize_attention.yaml#L27). By default, it is 5 vehicles and 0 obstacle.
 
 
 ## Supplementary 
