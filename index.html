@@ -122,14 +122,14 @@
 </section>
 
 <!-- Paper abstract -->
-<section class="section hero is-small">
+<section class="section hero is-small" id="Abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            In this work, we propose a learning based neural model that  provides both the longitudinal and lateral control commands to simultaneously navigate multiple vehicles. The goal is to ensure that each vehicle reaches a desired target state without colliding with any other vehicle or obstacle in an unconstrained environment. The model utilizes an attention based Graphical Neural Network paradigm that takes into consideration the state of all the surrounding vehicles to make an informed  decision. This allows each vehicle to smoothly reach its destination while also evading collision with the other agents. The data and corresponding labels for training such a network is obtained using an optimization based procedure.  Experimental results demonstrates that our model is powerful enough to generalize even to situations with more vehicles than in the training data. Our method also outperforms comparable graphical neural network architectures.
+            In this work, we propose a learning based neural model that provides both the longitudinal and lateral control commands to simultaneously navigate multiple vehicles. The goal is to ensure that each vehicle reaches a desired target state without colliding with any other vehicle or obstacle in an unconstrained environment. The model utilizes an attention based Graphical Neural Network paradigm that takes into consideration the state of all the surrounding vehicles to make an informed  decision. This allows each vehicle to smoothly reach its destination while also evading collision with the other agents. The data and corresponding labels for training such a network is obtained using an optimization based procedure.  Experimental results demonstrates that our model is powerful enough to generalize even to situations with more vehicles than in the training data. Our method also outperforms comparable graphical neural network architectures.
           </p>
         </div>
       </div>
@@ -152,15 +152,30 @@
 </section>
 
 
-<section class="hero is-small is-light">
+<section class="hero is-small"  id="Attention-Mechanism-of-our-Model">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3" id="Results-of-our-Model" tabindex="-1">
-        <a class="heading-link" href="#Results-of-our-Model">
+      <h2 class="title is-3">
+          Our proposed U Attention Block
+      </h2>
+      <div class="columns is-centered is-four-fifths">
+        <div class="column is-four-fifths is-centered">
+            <img src="images/U-Attention_Block.png" alt="MY ALT TEXT"/>
+        </div> 
+      </div>
+      <h2>
+        Please refer to <a href="https://github.com/yininghase/multi-agent-control/blob/main/supplementary.pdf" target="_blank">here</a> for the detailed explanation of the U Attention Block.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small is-light" id="Results-of-our-Model">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">
         Results of our Model
-        <span class="heading-link-symbol" aria-hidden="true"> 
-        </span>
-        </a>
       </h2>
       <div id="results-carousel" class="carousel results-carousel" data-interval="30">
         <div class="item">
@@ -201,15 +216,11 @@
 </section>
 
 
-<section class="hero is-small">
+<section class="hero is-small"  id="Attention-Mechanism-of-our-Model">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3" id="Attention-Mechanism-of-our-Model" tabindex="-1">
-        <a class="heading-link" href="#Attention-Mechanism-of-our-Model">
+      <h2 class="title is-3">
           Attention Mechanism of our Model
-        <span class="heading-link-symbol" aria-hidden="true"> 
-        </span>
-        </a>
       </h2>
       <div class="columns is-centered is-four-fifths">
         <div class="column is-four-fifths is-centered">
@@ -224,15 +235,11 @@
 </section>
 
 
-<section class="hero is-small is-light">
+<section class="hero is-small is-light" id="Comparison-with-Other-Models">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3" id="Comparison-with-Other-Models" tabindex="-1">
-        <a class="heading-link" href="#Comparison-with-Other-Models">
+      <h2 class="title is-3">
           Comparison with Other Models
-        <span class="heading-link-symbol" aria-hidden="true"> 
-        </span>
-        </a>
       </h2>
       <div id="results-carousel" class="carousel results-carousel" data-interval="30">
         <div class="item">
@@ -350,16 +357,16 @@
 
 
 <!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
-    </div>
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>BibTex Code Here</code></pre>
+  </div>
 </section>
 <!--End BibTex citation -->
 
 
-  <footer class="footer">
+<footer class="footer">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
