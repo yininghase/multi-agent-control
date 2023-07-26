@@ -43,7 +43,7 @@ plot folder: ./plots/prediction
 # config for test data
 test data souce: on the fly # choose from ["fixed test data" (use fixed test dataset), "on the fly" (randomly generate test case)]
 
-## config for test data generation
+## config for random test case generation
 collision mode: True # higher priority than parking mode
 parking mode: False
 
