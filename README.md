@@ -3,7 +3,7 @@
 **Yining Ma, Qadeer Khan and Daniel Cremers – IEEE ITSC 2023**
 
 
-[Project](https://yininghase.github.io/multi-agent-control/) | [Paper](https://arxiv.org/abs/<ARXIV PAPER ID>)
+[Project](https://yininghase.github.io/multi-agent-control/) | [ArXiv](https://arxiv.org/abs/2307.16727)
 
 
 This repository contains code for the paper **Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller** 
