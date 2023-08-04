@@ -397,6 +397,6 @@ For the interested reader, we have provided addtional details in the supplementa
 
 ## Acknowledgement
 
-We would like to thank [Marc Brede](https://github.com/MarcBrede/trajectory_prediction) for the fruitful discussions and code contributions during the course of this project.
+We would like to thank [Marc Brede](https://github.com/MarcBrede/trajectory_prediction) for the fruitful discussions and code cooperation in training data collection and visualization tool during the early stage of this project.
 
-We thanks for the opensource codebase [mpc-course-assignments](https://github.com/WuStangDan/mpc-course-assignments)
+We thanks for the opensource codebase [mpc-course-assignments](https://github.com/WuStangDan/mpc-course-assignments).
