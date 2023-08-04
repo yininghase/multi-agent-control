@@ -376,7 +376,7 @@ For the interested reader, we have provided addtional details in the supplementa
 
 - **Ablation studies on the contribution of the different components of the model** 
 
-- **Run time comparison in our supplementary**
+- **Run time comparison**
 
 - **Breakdown of the training data**
 
