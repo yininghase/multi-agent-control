@@ -204,7 +204,6 @@ class IterativeGNNModel(torch.nn.Module):
         obstacles = (marks != 0)
         
         edges_vehicles, edges_obstacles = self.get_edges(batches)
-        edges = torch.cat((edges_vehicles, edges_obstacles), dim=-1)
         
         if self.no_vehicle_edges:
             edges = edges_obstacles
