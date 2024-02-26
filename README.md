@@ -385,13 +385,16 @@ For the interested reader, we have provided addtional details in the supplementa
 
 ## BibTeX
 ```
-@misc{ma2023multi,
-      title={Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller}, 
-      author={Yining Ma and Qadeer Khan and Daniel Cremers},
-      year={2023},
-      eprint={2307.16727},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}}
+@INPROCEEDINGS{10422072,
+        author={Ma, Yining and Khan, Qadeer and Cremers, Daniel},
+        booktitle={2023 IEEE 26th International Conference on Intelligent Transportation Systems (ITSC)}, 
+        title={Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller}, 
+        year={2023},
+        volume={},
+        number={},
+        pages={2893-2900},
+        keywords={Training;Codes;Navigation;Neural networks;Training data;Data models;Optimization},
+        doi={10.1109/ITSC57777.2023.10422072}}
 ```
 
 
