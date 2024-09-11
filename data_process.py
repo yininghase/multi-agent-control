@@ -296,8 +296,6 @@ def get_obstacles_batch(starts, targets, num_obstacles):
         h_shift = np.random.uniform(low=0, high=7+3*failed_time//100, size=np.sum(obstacles_index))
         v_shift = np.random.uniform(low=[-7-3*failed_time//100]*np.sum(obstacles_index), 
                                     high=(v_shift_high[obstacles_index]+3*failed_time//100).tolist())
-        v_flip = np.random.randint(low=0, high=2, size=len(v_shift))*2-1
-        v_shift = v_shift*v_flip
         r = np.random.uniform(low=1, high=3, size=np.sum(obstacles_index))
         
         obstacles_[obstacles_index,:2] = (starts_[obstacles_index] + v[obstacles_index]*v_shift[:,None] 
