@@ -312,7 +312,7 @@ def calculate_collision_times(states, vehicle_size, len_batch, len_vehicle, len_
 def check_collision_rectangular_circle(state_rect, state_cir, vehicle_size):
     
     assert len(state_rect) == len(state_cir) or len(state_cir) == 1, \
-        "Mismatch of data length in collision check of two vehicles!"
+        "Mismatch of data length in collision check of one vehicle and one obstacle!"
     
     vehicle_corners_left_top = torch.tensor([vehicle_size[1]/2, vehicle_size[0]/2])
     
