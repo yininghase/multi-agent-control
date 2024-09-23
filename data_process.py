@@ -321,7 +321,7 @@ def get_obstacles_batch(starts, targets, num_obstacles):
 
 
 def get_problem(num_vehicles, num_obstacles, collision = True, parking = False, data_length = 1, mode = "generate train trajectory"):
-    ''' The function to get the problem with num_vehicles vehicles and num_obstacles obstacles'''
+    ''' The function to get the problem with num_vehicles and num_obstacles'''
     
     assert not(collision and parking), \
         "Can not implement collision mode and parking mode at the same time!"
