@@ -4,9 +4,11 @@
 
 [Project](https://yininghase.github.io/multi-agent-control/) | [ArXiv](https://arxiv.org/abs/2307.16727)
 
+<br />
 
 **Our new work MA-DV2F with improved performance can be found [here](https://yininghase.github.io/MA-DV2F/).**
 
+<br />
 
 This repository contains code for the paper **Multi Agent Navigation in Unconstrained Environments using a Centralized Attention based Graphical Neural Network Controller** 
 
