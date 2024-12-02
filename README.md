@@ -263,7 +263,7 @@ data
 |   |   |-- batches_data_vehicle={i}_obstalce={j}.pt
 |   |   |-- X_data_vehicle={i}_obstalce={j}.pt
 |   |   |-- y_GT_data_vehicle={i}_obstalce={j}.pt
-|   |   |-- trajectory_data_data_vehicle={i}_obstalce={j}.pt (not neccesary for trainval dataset)
+|   |   |-- trajectory_data_vehicle={i}_obstalce={j}.pt (not neccesary for trainval dataset)
 |   |   |-- ...
 |   |-- data_generation_2
 |   |-- data_generation_3
@@ -276,7 +276,7 @@ data
 |   |   |-- batches_data_vehicle={i}_obstalce={j}.pt
 |   |   |-- X_data_vehicle={i}_obstalce={j}.pt
 |   |   |-- y_model_data_vehicle={i}_obstalce={j}.pt
-|   |   |-- trajectory_data_data_vehicle={i}_obstalce={j}.pt
+|   |   |-- trajectory_data_vehicle={i}_obstalce={j}.pt
 |-- |-- {MODEL_NAME_2}
 |-- |-- ...
 
