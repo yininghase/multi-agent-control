@@ -286,7 +286,7 @@ data
 ## Pipeline
 ### Data Generation
 
-Modify the [config of generate trainval data](./configs/generate_trainval_data.yaml) under your demand.
+Modify the [config of trainval data generation](./configs/generate_trainval_data.yaml) under your demand.
 
 Run the generate_trainval_data.py to generate training and validation dataset:
 ```
@@ -295,7 +295,7 @@ cd <path_to_this_repo>
 python generate_trainval_data.py
 ```
 
-Modify the [config of generate test data](./configs/generate_test_data.yaml) under your demand.
+Modify the [config of test data generation](./configs/generate_test_data.yaml) under your demand.
 
 Run the generate_test_data.py to generate fixed test dataset:
 ```
