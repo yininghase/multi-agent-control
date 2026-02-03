@@ -1,0 +1,81 @@
+# config for simulation
+horizon: 1 # keep it as 1 for GNN inference
+simulation time: 200 # number of iteration for each simulation
+simulation runs: 2 # number of simulation
+show optimization: False # disable running of MPC, keep it as False for GNN inference
+random offset: False # keep it as False for GNN inference
+
+convolution type: UAttentionConv # choose from ["UAttentionConv", "TransformerConv", "EdgeConv", "GAINet" 
+                                 # or "{$Network_Arch_Above$}_NoVehicleEdges" (for the test of step efficiency)]
+model path: ./models/IterGNN_UAttentionConv.pth # path to the model
+
+collect data: True # keep it True if you need to calculate metrics for the inference result 
+collect trajectory: True # keep it True if you need to calculate metrics for the inference result 
+data folder: ./data/prediction # path to save prediction results of the model
+
+position tolerance: 1.0
+angle tolerance: 0.2
+stop tolerance: 0.05
+
+# config for MPC model
+control init: 
+
+distance cost: 1
+angle cost: 1
+collision cost: 20
+collision radius: 5
+obstacle cost: 20
+obstacle radius: 5
+smoothness cost: 0.1 
+travel dist cost: 0
+
+# config for visualization 
+figure size: 8
+figure limit: 30
+ticks step: 5
+car size: 
+  - 1.0
+  - 2.5
+show plot: False
+save plot: True 
+plot folder: ./plots/prediction
+
+# config for test data
+test data souce: on the fly # choose from ["fixed test data" (use fixed test dataset), "on the fly" (randomly generate test case)]
+
+## config for random test case generation
+collision mode: True # higher priority than parking mode
+parking mode: False
+
+## config for fixed test data
+# Note: if you want to compare the performance of different models, you should fix the test dataset
+test data folder: ./data/test_dataset
+test data each case: # keep it empty to use all test dataset or give a number to use partial test dataset
+
+## problem collection
+problem collection: # [num of vehicle, num of obstacle]
+  - [1, 0]
+  - [1, 1]
+  - [1, 2]
+  - [1, 3]
+  - [1, 4]
+  - [2, 0]
+  - [2, 1]
+  - [2, 2]
+  - [2, 3]
+  - [2, 4]
+  - [3, 0]
+  - [3, 1]
+  - [3, 2]
+  - [3, 3]
+  - [3, 4]
+  - [4, 0]
+  - [4, 1]
+  - [4, 2]
+  - [4, 3]
+  - [5, 0]
+  - [5, 1]
+  - [5, 2]
+  - [6, 0]
+  - [6, 1]
+  - [6, 2]
