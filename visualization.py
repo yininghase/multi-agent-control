@@ -312,7 +312,6 @@ class Visualize_Trajectory:
         
         return loss
 
-
 class Visualize_Attention:
     """Interactive visualization tool for inspecting attention weights of the U-Attention GNN model."""
     def __init__(self, simulation_options, model, device):

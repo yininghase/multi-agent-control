@@ -118,7 +118,6 @@ def sim_run(simulation_options, model = None, device = 'cpu'):
             break
     
     num_step = len(state_i)-1
-
     # check if all the vehicle reach their goals at the end of the simulation with in tolerance,
     # if not, the simulation failed, the data should not be collected
     if  model is None and simulation_options["collect data"] and \

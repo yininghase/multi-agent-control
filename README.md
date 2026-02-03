@@ -50,7 +50,6 @@ During inference, the model is applied auto-regressively: it predicts controls f
 
 ---
 
-## Results
 
 ### Scenario Demonstrations
 

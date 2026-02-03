@@ -82,7 +82,6 @@ def generate_trainval_data(config):
                 })
 
 
-
     
     for i in tqdm(range(config["simutaion runs"])):
         
