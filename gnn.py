@@ -9,6 +9,21 @@ from graph_attention_isomorphism_net import GAINet
 
 
 class ConvResidualBlock(torch.nn.Module):
+    """Residual block with two graph convolutions and batch normalization.
+
+    Args:
+        io_node_num (int): Input/output feature dimension.
+        hidden_node_num (int): Hidden dimension for first convolution.
+        key_query_len (int): Key/query dimension for attention-based convs. Default: 512.
+        conv_type (str): Type of convolution: 'UAttentionConv', 'GAINet', 'TransformerConv', or 'EdgeConv'.
+
+    Inputs:
+        x0 (Tensor): Node features (N, io_node_num).
+        edges (Tensor): Edge indices (2, E).
+
+    Returns:
+        Tensor: Output features (N, io_node_num).
+    """
     def __init__(self, io_node_num, hidden_node_num, key_query_len=512, conv_type="UAttentionConv"):
         super().__init__()
         
@@ -50,7 +65,15 @@ class ConvResidualBlock(torch.nn.Module):
             raise NotImplementedError("Not implement this type of GNN convolution!")
         
     def forward(self, x0, edges):
-        
+        """Apply two convolutions with residual connection.
+
+        Args:
+            x0 (Tensor): Input node features (N, io_node_num).
+            edges (Tensor): Edge indices (2, E).
+
+        Returns:
+            Tensor: Output node features (N, io_node_num).
+        """
         x = self.conv1(x0, edges)
         x = self.bn1(x)
         x = self.a1(x)
@@ -64,6 +87,20 @@ class ConvResidualBlock(torch.nn.Module):
 
 
 class LinearBlock(torch.nn.Module):
+    """Linear layer with batch normalization and configurable activation.
+
+    Args:
+        in_node_num (int): Input dimension.
+        out_node_num (int): Output dimension.
+        activation (str): Activation type, 'relu' or 'tanh'. Default: 'relu'.
+
+    Inputs:
+        x (Tensor): Input features (N, in_node_num).
+        x0 (Tensor, optional): Residual connection tensor (N, out_node_num).
+
+    Returns:
+        Tensor: Output features (N, out_node_num).
+    """
     def __init__(self, in_node_num, out_node_num, activation="relu"):
         super().__init__()
         
@@ -79,7 +116,15 @@ class LinearBlock(torch.nn.Module):
 
         
     def forward(self, x, x0=None):
-        
+        """Apply linear transform, batch norm, optional residual, and activation.
+
+        Args:
+            x (Tensor): Input features (N, in_node_num).
+            x0 (Tensor, optional): Residual to add before activation (N, out_node_num).
+
+        Returns:
+            Tensor: Output features (N, out_node_num).
+        """
         x = self.linear(x)
         x = self.bn(x)
         
@@ -92,6 +137,18 @@ class LinearBlock(torch.nn.Module):
 
 
 class LinearResidualBlock(torch.nn.Module):
+    """Two-layer MLP with residual connection.
+
+    Args:
+        io_node_num (int): Input and output dimension.
+        hidden_node_num (int): Hidden dimension.
+
+    Inputs:
+        x0 (Tensor): Input features (N, io_node_num).
+
+    Returns:
+        Tensor: Output features (N, io_node_num).
+    """
     def __init__(self, io_node_num, hidden_node_num):
         super().__init__()
         
@@ -100,7 +157,14 @@ class LinearResidualBlock(torch.nn.Module):
     
         
     def forward(self, x0):
-        
+        """Apply two linear blocks with residual connection.
+
+        Args:
+            x0 (Tensor): Input (N, io_node_num).
+
+        Returns:
+            Tensor: Output (N, io_node_num).
+        """
         x = self.linear1(x0)
         x = self.linear2(x,x0)
         
@@ -108,6 +172,27 @@ class LinearResidualBlock(torch.nn.Module):
        
 
 class IterativeGNNModel(torch.nn.Module):
+    """Iterative GNN model for multi-agent control: encodes state, applies graph convolution blocks, decodes controls.
+
+    In training mode, outputs controls for a single step. In inference mode, auto-regressively
+    rolls out a trajectory over the given horizon using a bicycle kinematics model.
+
+    Args:
+        horizon (int): Prediction horizon length.
+        max_num_vehicles (int): Maximum number of vehicles supported.
+        max_num_obstacles (int): Maximum number of obstacles supported.
+        device (str): Device to use ('cpu' or 'cuda'). Default: 'cpu'.
+        mode (str): 'training' or 'inference'. Default: 'inference'.
+        conv_type (str): GNN convolution type. Default: 'UAttentionConv'.
+
+    Inputs (forward):
+        x0 (Tensor): Initial state features (total_nodes, 8).
+        batches (Tensor): Problem configuration matrix (B, 2) with columns [num_nodes, num_vehicles].
+
+    Returns:
+        If mode='training': list of [vehicle_controls, static_controls].
+        If mode='inference': tuple (controls, statics, states, edges_vehicles, edges_obstacles).
+    """
     def __init__(self, horizon, max_num_vehicles, max_num_obstacles, device='cpu',
                  mode="inference", conv_type="UAttentionConv"):
         super().__init__()
@@ -138,7 +223,15 @@ class IterativeGNNModel(torch.nn.Module):
         
     
     def generate_edge_template(self):
-        
+        """Precompute edge index templates for all (vehicles, obstacles) combinations.
+
+        Args:
+            None.
+
+        Returns:
+            dict: Keys are (total_nodes, num_vehicles) tuples. Values are
+                  [edges_vehicles (2, Ev), edges_obstacles (2, Eo)].
+        """
         assert self.max_num_vehicles >= 1, \
                'Must have at least one vehicle!'
         
@@ -166,7 +259,7 @@ class IterativeGNNModel(torch.nn.Module):
                     # vehicle_to_obstacle = torch.cat((vehicles[None,:], obstacles[None,:]),dim=0)
                     edges_obstacles = torch.cat((edges_obstacles, 
                                                  obstacle_to_vehicle, 
-                                                #  vehicle_to_obstacle,
+                                                 #  vehicle_to_obstacle,
                                                  ),dim=-1)
                 
                 edge_template[(num_vehicles+num_obstacles, num_vehicles)] = [edges_vehicles, edges_obstacles]
@@ -175,7 +268,14 @@ class IterativeGNNModel(torch.nn.Module):
 
     
     def get_edges(self, batches):
-        
+        """Assemble edge indices for a batch by offsetting precomputed templates.
+
+        Args:
+            batches (Tensor): (B, 2) with columns [total_nodes, num_vehicles].
+
+        Returns:
+            tuple[Tensor, Tensor]: (edges_vehicles, edges_obstacles), each (2, E).
+        """
         edges_vehicles = torch.tensor([[],[]],dtype=torch.int).to(self.device)
         edges_obstacles = torch.tensor([[],[]],dtype=torch.int).to(self.device)
         
@@ -198,6 +298,19 @@ class IterativeGNNModel(torch.nn.Module):
         return edges_vehicles, edges_obstacles
 
     def forward(self, x0, batches):
+        """Forward pass: encode, apply graph convs, decode controls.
+
+        In training mode, returns controls for a single step.
+        In inference mode, auto-regressively rolls out the full trajectory.
+
+        Args:
+            x0 (Tensor): Flattened node states (total_nodes, 8).
+            batches (Tensor): (B, 2) matrix [total_nodes, num_vehicles].
+
+        Returns:
+            If training: list [vehicle_controls (V, 2), static_controls (O, 2)].
+            If inference: tuple (controls, statics, states, edges_vehicles, edges_obstacles).
+        """
         
         marks = (x0[:,-1])
         vehicles = (marks == 0)
@@ -231,7 +344,7 @@ class IterativeGNNModel(torch.nn.Module):
             return controls
                 
         else:
-                                
+                                    
             states = torch.empty((0, torch.sum(batches[:,0]), 8), device=self.device)
             states = torch.cat((states, x0[None,...]))
             controls = torch.empty((0, torch.sum(batches[:,1]), 2), device=self.device)
@@ -264,6 +377,15 @@ class IterativeGNNModel(torch.nn.Module):
             return controls, statics, states, edges_vehicles, edges_obstacles
     
     def vehicle_dynamic(self, state, control):
+        """Bicycle kinematics model: update x, y, heading, velocity from control inputs.
+
+        Args:
+            state (Tensor): Current state (N, 4) = [x, y, psi, v].
+            control (Tensor): Control inputs (N, 2) = [pedal, steering_angle].
+
+        Returns:
+            Tensor: Next state (N, 4) = [x, y, psi, v].
+        """
         x_t = state[:,0]+state[:,3]*torch.cos(state[:,2])*self.dt
         y_t = state[:,1]+state[:,3]*torch.sin(state[:,2])*self.dt
         psi_t = state[:,2]+state[...,3]*self.dt*torch.tan(control[:,1])/2.0
@@ -273,6 +395,18 @@ class IterativeGNNModel(torch.nn.Module):
         return torch.cat((x_t[...,None], y_t[...,None], psi_t[...,None], v_t[...,None]), dim=-1)
 
     def forward_show_attention(self, x0, batches):
+        """Forward pass returning attention logits for visualization.
+
+        Only supports single-batch inference with UAttentionConv type.
+
+        Args:
+            x0 (Tensor): Initial states (total_nodes, 8).
+            batches (Tensor): (1, 2) = [total_nodes, num_vehicles].
+
+        Returns:
+            tuple: (controls, statics, states, edges_vehicles, edges_obstacles, attention),
+                   where attention is (4, V, N) containing alpha logits from 4 conv layers.
+        """
         
         assert (len(batches) == 1) and self.conv_type == "UAttentionConv", \
             "Forward_show_attention only support UAttentionConv with batch_size == 1!"

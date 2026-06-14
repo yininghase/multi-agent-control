@@ -11,6 +11,14 @@ from argparse import ArgumentParser
 warnings.filterwarnings("ignore")
     
 def length(data):
+    """Count total number of data batches across all problem configurations.
+
+    Args:
+        data (dict): Data dictionary keyed by (total_nodes, num_vehicles) tuples.
+
+    Returns:
+        int: Total number of data batches.
+    """
     
     length = 0
     
@@ -22,14 +30,22 @@ def length(data):
         
 
 def generate_trainval_data(config):
-    '''function to collect training data for supervised learning'''
+    '''Generate training/validation data by running MPC simulation for each problem configuration.
+
+    Args:
+        config (dict): Configuration with keys 'data folder', 'problem collection',
+                       'simutaion runs', 'collision mode', 'parking mode', etc.
+
+    Returns:
+        None.
+    '''
     
     if not os.path.exists(config["data folder"]):
         os.makedirs(config["data folder"])
     
     # problem with different number of vehicles and obstacles
     # [[num_vehicles, num_obstacles], ...]
-   
+    
     problem_collection = np.array(config['problem collection'])
     assert problem_collection.shape[1] == 2 and \
             len(problem_collection.shape) == 2 and \
@@ -64,6 +80,7 @@ def generate_trainval_data(config):
                     "trajectory_data_path": os.path.join(config["data folder"], 
                                                     f"trajectory_data_vehicle={num_vehicles}_obstalce={num_obstacles}.pt"),
                 })
+
 
 
     
@@ -136,8 +153,3 @@ if __name__ == "__main__":
     
     generate_trainval_data(config)
    
-
-
-
-    
-    

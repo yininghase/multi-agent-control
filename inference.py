@@ -11,6 +11,15 @@ from data_process import get_problem, load_test_data, load_yaml
 
 
 def inference(config):
+    """Run inference with a trained GNN model on test problems, optionally collecting trajectory data.
+
+    Args:
+        config (dict): Configuration with keys 'problem collection', 'model path',
+                       'convolution type', 'test data souce', 'data folder', 'collect data', etc.
+
+    Returns:
+        None.
+    """
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print('Device available now:', device)
@@ -49,7 +58,7 @@ def inference(config):
                 data[(num_vehicles, num_obstacles)].update({"trajectory_data": torch.tensor([0]),
                                                             "trajectory_data_path": os.path.join(config["data folder"], 
                                                             f"trajectory_data_vehicle={num_vehicles}_obstalce={num_obstacles}.pt"),
-                            })
+                        })
 
     assert config["horizon"] == 1, "keep horizon as 1 for GNN inference!"
 

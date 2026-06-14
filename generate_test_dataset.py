@@ -8,6 +8,15 @@ from argparse import ArgumentParser
 
 
 def generate_test_data(config):
+    """Generate a fixed test dataset by sampling random problems and saving them to disk.
+
+    Args:
+        config (dict): Configuration with keys 'problem collection', 'data folder',
+                       'data length each case', 'collision mode', 'parking mode'.
+
+    Returns:
+        None.
+    """
         
     
     problem_collection = np.array(config["problem collection"], dtype=int)

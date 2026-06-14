@@ -13,18 +13,33 @@ from calculate_metrics import (check_collision_rectangular_circle,
 
 
 class Visualize_Trajectory:
+    """Visualizes vehicle trajectories as an animation, including predicted paths and collision markers."""
     def __init__(self, simulation_options, show_attention=False):
-        
+        """Initialize visualization with simulation options.
+
+        Args:
+            simulation_options (dict): Configuration with plot, vehicle, and obstacle parameters.
+            show_attention (bool, optional): Enable attention subplot. Defaults to False.
+
+        Returns:
+            None.
+        """
         self.simulation_options = simulation_options
         self.cmap = [(0,0,0), (0.5,0,0), (0,0.5,0), (0,0,0.5),
                      (0.5,0.5,0), (0,0.5,0.5), (0.5,0,0.5), (0.5, 0.5, 0.5),
                      ]
         self.show_attention = show_attention
 
-    # start: [num_vehicle, [x, y, psi]]
-    # target: [num_vehicle, [x, y, psi]]
     
     def base_plot(self, is_trajectory):
+        """Set up the base matplotlib figure with vehicles, targets, and obstacles.
+
+        Args:
+            is_trajectory (bool): If True, only plot (no legend); if False, animation mode with legend.
+
+        Returns:
+            None.
+        """
         
         if self.show_attention:
             self.fig = plt.figure(figsize=(2*self.simulation_options["figure size"], 
@@ -58,6 +73,8 @@ class Visualize_Trajectory:
 
         patch_obs = []
         
+        # start: [num_vehicle, [x, y, psi]]
+        # target: [num_vehicle, [x, y, psi]]
         start = self.simulation_options["start"]
         target = self.simulation_options["target"]
         
@@ -65,7 +82,6 @@ class Visualize_Trajectory:
         target_new = self.car_patch_pos(self.simulation_options["target"])
 
         for i in range(self.simulation_options["num of vehicles"]):
-            # cars
             
             patch_car = mpatches.Rectangle([0,0], 
                                             self.simulation_options["car size"][0], 
@@ -107,7 +123,6 @@ class Visualize_Trajectory:
 
             self.frame = plt.text(12, 12, "", fontsize=15)
 
-            # trajectories
             if self.simulation_options["show optimization"]:
                 if is_trajectory:
                     predict_opt, = self.ax.plot([], [], 'r--', linewidth=1)
@@ -116,15 +131,6 @@ class Visualize_Trajectory:
                 else:
                     predict_opt, = self.ax.plot([], [], 'r--', linewidth=1, label="_Optimization")
                 self.predicts_opt.append(predict_opt)
-            
-            # if self.simulation_options["is model"]:
-            #     if is_trajectory:
-            #         predict_model, = self.ax.plot([], [], 'b--', linewidth=1)
-            #     elif i == 0:
-            #         predict_model, = self.ax.plot([], [], 'b--', linewidth=1, label="Model Prediction")
-            #     else:
-            #         predict_model, = self.ax.plot([], [], 'b--', linewidth=1, label="_Model Prediction")
-            #     self.predicts_model.append(predict_model)
     
             vehicle_mark, = self.ax.plot([], [], color=self.cmap[i], marker='.', linewidth=1, label=f"vehicle {i+1}")
         
@@ -138,6 +144,17 @@ class Visualize_Trajectory:
     
     
     def create_video(self, data, predict_opt, predict_model, attention=None):
+        """Create animation from simulation data showing vehicle movement and predictions.
+
+        Args:
+            data (np.ndarray): Simulation state history (T, num_vehicles, 4).
+            predict_opt (np.ndarray): MPC predictions (T, horizon+1, num_vehicles, 4).
+            predict_model (np.ndarray): Model predictions (T, horizon+1, num_vehicles, 4).
+            attention (np.ndarray, optional): Attention weights for display. Defaults to None.
+
+        Returns:
+            None.
+        """
         self.base_plot(is_trajectory=False)
         self.data = data
         if self.simulation_options["is model"]:
@@ -159,12 +176,18 @@ class Visualize_Trajectory:
             plt.show()
 
     def update_plot(self, num):
+        """Update function for animation: redraw vehicles and predicted trajectories at each frame.
+
+        Args:
+            num (int): Frame index.
+
+        Returns:
+            None.
+        """
         
         data = self.data[num,...]               
         
-        # self.frame.set_text("Frame: " + str(num))
         for i in range(self.simulation_options["num of vehicles"]):
-            # vehicle
             data_ = self.car_patch_pos(data[i][None,...])
             self.patch_vehicles[i].set_xy(data_[0,:2])
             self.patch_vehicles[i].angle = np.rad2deg(data_[0,2])-90
@@ -177,12 +200,6 @@ class Visualize_Trajectory:
             if self.simulation_options["show optimization"]:
                 self.predicts_opt[i].set_data(self.predict_opt[num, :, i, 0], self.predict_opt[num, :, i, 1])
                 
-                
-            # if self.simulation_options["is model"]:
-            #     self.predicts_model[i].set_data(self.predict_model[num, :, i, 0], self.predict_model[num, :, i, 1])
-        
-            # self.velocities[i].set_text("Velocity: " + str(round(self.data[num, i, 3], 2)))
-        
         
         if self.show_attention and self.attention is not None:
             self.ax_.imshow(self.attention[num], vmin=-2.5, vmax=2.5, cmap="gray")
@@ -193,6 +210,14 @@ class Visualize_Trajectory:
                                 labels = [f"vehicle {i+1}" for i in range(self.simulation_options["num of vehicles"])])
             
     def plot_trajectory(self, points):
+        """Plot full trajectory as a colored line with collision markers.
+
+        Args:
+            points (np.ndarray): Trajectory points (T, num_vehicles, 4).
+
+        Returns:
+            None.
+        """
         self.base_plot(is_trajectory=True)
         max_time = points.shape[0]
         
@@ -201,7 +226,6 @@ class Visualize_Trajectory:
             segments = np.concatenate([veh_points[:-1], veh_points[1:]], axis=1)
             norm = plt.Normalize(0, max_time)
             lc = LineCollection(segments, cmap="viridis", norm=norm)
-            # lc = LineCollection(segments, colors=self.cmap[i])
             lc.set_array(range(points.shape[0]))
             lc.set_linewidth(2)
             line = self.ax.add_collection(lc)
@@ -244,6 +268,14 @@ class Visualize_Trajectory:
 
     
     def car_patch_pos(self, posture):
+        """Convert vehicle posture to bottom-left corner position for matplotlib Rectangle patch.
+
+        Args:
+            posture (np.ndarray): Vehicle state(s) (..., 3) = [x, y, heading].
+
+        Returns:
+            np.ndarray: Transformed posture (bottom-left x, bottom-left y, heading).
+        """
         
         posture_new = posture.copy()
         
@@ -254,11 +286,16 @@ class Visualize_Trajectory:
         
         return posture_new
     
-    """
-    Creates a heatmap
-    state_data: dims (simulation_length, num_vehicles, 4)
-    """
     def calculate_cost(self, coordinates, targets):
+        """Compute heatmap cost combining distance to goal and obstacle proximity.
+
+        Args:
+            coordinates (np.ndarray): Grid coordinates (resolution, resolution, 2).
+            targets (np.ndarray): Target positions (num_vehicles, 2).
+
+        Returns:
+            np.ndarray: Cost map of shape (resolution, resolution).
+        """
         
         dist_cost = self.simulation_options["distance_cost"]
         obst_cost = self.simulation_options["obstacle_cost"]
@@ -269,22 +306,26 @@ class Visualize_Trajectory:
         loss = np.linalg.norm(coordinates - targets[None, None, :2], ord=2, axis=-1)*dist_cost
         
         if  obst_cost > 0 and num_obstacles > 0:
-            
-            # dist = torch.norm(preds[:,1:,:,:2]-obs[:,None,None,:2], dim=-1, p=2)-obs[:,None,None,2]
-            # dist1 = torch.clip(dist, min=0, max=None) + 1e-8
-            # loss += torch.sum((1/dist1 - 1/self.obs_radius) * (dist1 < self.obs_radius), dim=(-1,-2)) * self.obs_cost
-            # # dist2 = (torch.clip(-dist, min=0, max=None) + 100)**4 - 1e8
-            # dist2 = torch.exp(torch.clip(-dist, min=0, max=None) + 10) - np.exp(10)
-            # loss += torch.sum(dist2, dim=(-1,-2)) * self.obs_cost
             dist = np.linalg.norm(coordinates[:,:,None,:]-obstacles[None,None,:,:2], ord=2, axis=-1)-obstacles[None,None,:,2]-obs_radius
             dist = (np.clip(-dist, a_min=0, a_max=None))**2
             loss += np.sum(dist, axis=-1) * obst_cost
         
         return loss
 
+
 class Visualize_Attention:
+    """Interactive visualization tool for inspecting attention weights of the U-Attention GNN model."""
     def __init__(self, simulation_options, model, device):
-        
+        """Initialize attention visualization with model and device.
+
+        Args:
+            simulation_options (dict): Configuration with plot, vehicle, and obstacle parameters.
+            model (IterativeGNNModel): Trained GNN model.
+            device (str): Device for model inference ('cpu' or 'cuda').
+
+        Returns:
+            None.
+        """
         self.simulation_options = simulation_options
         self.cmap = [(0,0,0), (0.5,0,0), (0,0.5,0), (0,0,0.5),
                      (0.5,0.5,0), (0,0.5,0.5), (0.5,0,0.5), (0.5, 0.5, 0.5),
@@ -292,11 +333,16 @@ class Visualize_Attention:
 
         self.model = model
         self.device = device
-    # start: [num_vehicle, [x, y, psi]]
-    # target: [num_vehicle, [x, y, psi]]
     
     def base_plot(self, move_mode=False):
-        
+        """Set up the base figure with vehicle/obstacle patches, optional sliders for velocity, and mouse interaction.
+
+        Args:
+            move_mode (bool, optional): If True, add velocity sliders and mouse interaction. Defaults to False.
+
+        Returns:
+            None.
+        """
         
         self.fig = plt.figure(figsize=(2*self.simulation_options["figure size"], 
                                     self.simulation_options["figure size"]))
@@ -324,6 +370,8 @@ class Visualize_Attention:
 
         self.patch_obs = []
         
+        # start: [num_vehicle, [x, y, psi]]
+        # target: [num_vehicle, [x, y, psi]]
         start = self.simulation_options["start"]
         target = self.simulation_options["target"]
         
@@ -331,7 +379,6 @@ class Visualize_Attention:
         target_new = self.car_patch_pos(self.simulation_options["target"])
 
         for i in range(self.simulation_options["num of vehicles"]):
-            # cars
             
             patch_car = mpatches.Rectangle([0,0], 
                                             self.simulation_options["car size"][0], 
@@ -387,11 +434,28 @@ class Visualize_Attention:
             
             class Update:
                 def __init__(self, index, root):
+                    """Initialize the slider update handler.
+
+                    Args:
+                        index (int): Vehicle index this slider controls.
+                        root (Visualize_Attention): Parent visualization instance.
+
+                    Returns:
+                        None.
+                    """
                     self.index = index
                     self.root = root
                     self.simulation_options = self.root.simulation_options
                 
                 def update(self, val):
+                    """Callback for slider value change: recompute attention.
+
+                    Args:
+                        val (float): New velocity value from slider.
+
+                    Returns:
+                        None.
+                    """
                     self.simulation_options["start"][self.index, 3] = val
                     vehicle_input = np.concatenate((self.simulation_options["start"], self.simulation_options["target"], 
                                             np.zeros((self.simulation_options["num of vehicles"], 1))), axis=1)
@@ -428,7 +492,6 @@ class Visualize_Attention:
                     valmax=3,
                     valinit=self.simulation_options["start"][i, 3],
                     color=self.cmap[i]
-                    # orientation="vertical"
                 ))       
                                 
                 self.update.append(Update(i, self))
@@ -450,7 +513,6 @@ class Visualize_Attention:
             _, _, _, _, _, attention = self.model.forward_show_attention(model_input, batches)
             attention = np.mean(attention.clone().detach().cpu().numpy(), axis=0)
             
-            # self.base_plot()
             self.show_attention(attention)
             self.fig.canvas.draw()
             
@@ -464,11 +526,16 @@ class Visualize_Attention:
             
             plt.show()
 
-    # The function to be called anytime a slider's value changes
-   
-    
 
     def show_attention(self, attention):       
+        """Display attention weight matrix as a grayscale image with labeled axes.
+
+        Args:
+            attention (np.ndarray): Attention weight matrix (num_vehicles, total_nodes).
+
+        Returns:
+            None.
+        """
         
         self.ax_.imshow(attention, vmin=-2.5, vmax=2.5, cmap="gray")
         self.ax_.set_xticks(ticks=[i for i in range(self.simulation_options["num of vehicles"]+self.simulation_options["num of obstacles"])],
@@ -483,11 +550,17 @@ class Visualize_Attention:
         
         for i in range(self.simulation_options["num of obstacles"]):
             self.ax_.get_xticklabels()[i+self.simulation_options["num of vehicles"]].set_color(self.cmap[i])        
-        
-        # plt.show()
-
     
+
     def car_patch_pos(self, posture):
+        """Convert vehicle posture to bottom-left corner position for matplotlib Rectangle patch.
+
+        Args:
+            posture (np.ndarray): Vehicle state(s) (..., 3) = [x, y, heading].
+
+        Returns:
+            np.ndarray: Transformed posture (bottom-left x, bottom-left y, heading).
+        """
         
         posture_new = posture.copy()
         
@@ -500,6 +573,14 @@ class Visualize_Attention:
     
     
     def on_press(self, event):
+        """Handle mouse press: identify clicked object (vehicle, target, obstacle).
+
+        Args:
+            event (MouseEvent): Matplotlib mouse press event.
+
+        Returns:
+            None.
+        """
         
         for i in range(self.simulation_options["num of vehicles"]):
             move_vehicle = self.patch_vehicles[i]
@@ -535,6 +616,14 @@ class Visualize_Attention:
             
 
     def on_motion(self, event):
+        """Handle mouse drag: update position of vehicle, target, or obstacle.
+
+        Args:
+            event (MouseEvent): Matplotlib mouse motion event.
+
+        Returns:
+            None.
+        """
         if self.move_object_type == "vehicle":
             vehicle = self.move_object[0]
             arrow = self.move_object[1]
@@ -581,6 +670,14 @@ class Visualize_Attention:
 
 
     def on_scroll(self, event):
+        """Handle scroll: rotate vehicle/target heading or resize obstacle radius.
+
+        Args:
+            event (MouseEvent): Matplotlib scroll event.
+
+        Returns:
+            None.
+        """
         if self.move_object_type == "vehicle":
             vehicle = self.move_object[0]
             arrow = self.move_object[1]
@@ -652,6 +749,14 @@ class Visualize_Attention:
 
 
     def on_release(self, event):
+        """Handle mouse release: update attention visualization after drag.
+
+        Args:
+            event (MouseEvent): Matplotlib mouse release event.
+
+        Returns:
+            None.
+        """
         if self.move_object_type is not None:
             
             self.move_object = None
@@ -673,6 +778,5 @@ class Visualize_Attention:
             _, _, _, _, _, attention = self.model.forward_show_attention(model_input, batches)
             attention = np.mean(attention.clone().detach().cpu().numpy(), axis=0)
             
-            # self.base_plot()
             self.show_attention(attention)
             self.fig.canvas.draw()

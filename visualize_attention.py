@@ -10,9 +10,18 @@ from visualization import Visualize_Attention
 
 
 def inference(config):
+    """Run attention visualization: load model, iterate test cases, and launch interactive Visualize_Attention tool.
+
+    Args:
+        config (dict): Configuration with keys 'problem collection', 'model path',
+                       'convolution type', 'test data souce', etc.
+
+    Returns:
+        None.
+    """
     
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # device = torch.device("cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print('Device available now:', device)
     
     
@@ -112,4 +121,3 @@ if __name__ == "__main__":
         print(f"current task: num_vehicle={problem_collection[i][0]}, num_obstacle={problem_collection[i][1]}")
         config['problem collection'] = [problem_collection[i]]
         inference(config)
-    

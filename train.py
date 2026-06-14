@@ -15,6 +15,15 @@ from data_process import (load_data, load_yaml, split_train_valid,
 
 
 def train_supervised(config):
+    """Train the GNN model in supervised mode with early stopping and learning rate scheduling.
+
+    Args:
+        config (dict): Configuration dictionary containing data paths, model hyperparameters,
+                       training settings (learning rate, batch size, epochs, etc.).
+
+    Returns:
+        None.
+    """
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print('Device available now:', device)

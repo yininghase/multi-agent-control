@@ -9,6 +9,15 @@ from data_process import load_data, load_yaml
 
 
 def calculate_metrics(config): 
+    """Compute success rate, collision rate, travel distance, and trajectory efficiency from saved data.
+
+    Args:
+        config (dict): Configuration with keys 'data folder', 'car size', 'position tolerance',
+                       'angle tolerance', 'number of vehicles', 'num of obstacles'.
+
+    Returns:
+        None.
+    """
     
     assert os.path.exists(config["data folder"]), \
         f"The given folder of '{config['data folder']}' does not exist!"        
@@ -105,6 +114,16 @@ def calculate_metrics(config):
         
 
 def calculate_step_efficiency(config):
+    """Compare step efficiency between parallel (with edges) and sequential (without edges) inference results.
+
+    Args:
+        config (dict): Configuration with keys 'result parallel with edges',
+                       'result sequential without edges', 'car size', 'stop tolerance',
+                       'number of vehicles', 'num of obstacles'.
+
+    Returns:
+        None.
+    """
     
     assert os.path.exists(config["result parallel with edges"]) & os.path.exists(config["result sequential without edges"]), \
         f"The given folder of '{config['result parallel with edges']}' or '{config['result sequential without edges']}' does not exist!" 
@@ -282,6 +301,19 @@ def calculate_step_efficiency(config):
         
 
 def calculate_collision_times(states, vehicle_size, len_batch, len_vehicle, len_obstacle):
+    """Detect all vehicle-vehicle and vehicle-obstacle collisions across states.
+
+    Args:
+        states (Tensor): State tensor (T, total_nodes, 8).
+        vehicle_size (list): Vehicle dimensions [length, width].
+        len_batch (int): Total number of nodes (vehicles + obstacles).
+        len_vehicle (int): Number of vehicles.
+        len_obstacle (int): Number of obstacles.
+
+    Returns:
+        tuple[Tensor, Tensor]: (collision_flags, vehicle_with_collision),
+               collision_flags is bool (T, num_pairs), vehicle_with_collision is bool (T, len_vehicle).
+    """
     
     vehicle_with_collision = torch.zeros((len(states),len_vehicle))
     
@@ -310,6 +342,16 @@ def calculate_collision_times(states, vehicle_size, len_batch, len_vehicle, len_
 
 
 def check_collision_rectangular_circle(state_rect, state_cir, vehicle_size):
+    """Check collision between a rectangular vehicle and a circular obstacle.
+
+    Args:
+        state_rect (Tensor): Rectangle state (T, 8) = [x, y, psi, v, goal_x, goal_y, goal_psi, _].
+        state_cir (Tensor): Circle state (T, 8) = [_, _, _, _, obs_x, obs_y, radius, _].
+        vehicle_size (list): Vehicle dimensions [length, width].
+
+    Returns:
+        Tensor: Bool tensor indicating collision per timestep.
+    """
     
     assert len(state_rect) == len(state_cir) or len(state_cir) == 1, \
         "Mismatch of data length in collision check of one vehicle and one obstacle!"
@@ -332,6 +374,16 @@ def check_collision_rectangular_circle(state_rect, state_cir, vehicle_size):
     return collision
 
 def check_collision_rectangular_rectangular(state_1, state_2, vehicle_size):
+    """Check collision between two rectangular vehicles using Separating Axis Theorem.
+
+    Args:
+        state_1 (Tensor): First vehicle state (T, 8).
+        state_2 (Tensor): Second vehicle state (T, 8).
+        vehicle_size (list): Vehicle dimensions [length, width].
+
+    Returns:
+        Tensor: Bool tensor indicating collision per timestep.
+    """
     
     assert len(state_1) == len(state_2), \
         "Mismatch of data length in collision check of two vehicles!"
@@ -387,6 +439,16 @@ def check_collision_rectangular_rectangular(state_1, state_2, vehicle_size):
 
 
 def calculate_reach_goal(final_states, position_tolerance, angle_tolerance):
+    """Check whether vehicles reached their goals within position and angle tolerance.
+
+    Args:
+        final_states (Tensor): Final states (num_trajectories, num_vehicles, 8).
+        position_tolerance (float): Maximum allowed position error.
+        angle_tolerance (float): Maximum allowed angle error.
+
+    Returns:
+        Tensor: Bool tensor (num_trajectories, num_vehicles) indicating goal reached.
+    """
     
     pos_diff = torch.norm(final_states[:,:,:2]-final_states[:,:,4:6],p=2,dim=-1)
     
@@ -400,6 +462,17 @@ def calculate_reach_goal(final_states, position_tolerance, angle_tolerance):
 
 
 def calculate_trajectory_efficiency(trajectory_distance, start, goal, success_index):
+    """Compute trajectory efficiency: ratio of straight-line distance to actual travel distance for successful runs.
+
+    Args:
+        trajectory_distance (Tensor): Cumulative travel distances per trajectory.
+        start (Tensor): Start positions (num_trajectories, num_vehicles, 2).
+        goal (Tensor): Goal positions (num_trajectories, num_vehicles, 2).
+        success_index (Tensor): Bool tensor indicating successful trajectories.
+
+    Returns:
+        Tensor: Scalar float tensor of trajectory efficiency.
+    """
         
     start_goal_distance = torch.norm(start-goal, p=2, dim=-1)[success_index]
     trajectory_distance = trajectory_distance[success_index]
