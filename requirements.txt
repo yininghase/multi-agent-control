@@ -1,0 +1,25 @@
+# Python dependencies for multi-agent-control
+# Note: PyTorch and PyTorch Geometric packages below are tied to CUDA 11.3.
+# For other CUDA versions, please install the matching wheels from:
+#   https://pytorch.org/get-started/previous-versions/
+#   https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html
+
+# Core deep learning
+torch==1.11.0+cu113
+torchvision==0.12.0+cu113
+torchaudio==0.11.0+cu113
+
+# PyTorch Geometric and dependencies
+torch-scatter
+torch-sparse
+torch-cluster
+torch-spline-conv
+torch-geometric==2.0.4
+
+# Scientific computing and utilities
+numpy
+scipy
+matplotlib
+pyyaml
+tqdm
+scikit-learn
