@@ -56,24 +56,9 @@ During inference, the model is applied auto-regressively: it predicts controls f
 
 The GIFs below show four different test scenarios. The model navigates all vehicles to their destinations without collisions.
 
-<table>
-  <tr>
-    <td align="center">Scenario 1</td>
-    <td align="center">Scenario 2</td>
-  </tr>
-  <tr>
-    <td><img src="./images/IterGNN_UAttentionConv_1.gif"></td>
-    <td><img src="./images/IterGNN_UAttentionConv_2.gif"></td>
-  </tr>
-  <tr>
-    <td align="center">Scenario 3</td>
-    <td align="center">Scenario 4</td>
-  </tr>
-  <tr>
-    <td><img src="./images/IterGNN_UAttentionConv_3.gif"></td>
-    <td><img src="./images/IterGNN_UAttentionConv_4.gif"></td>
-  </tr>
-</table>
+| Scenario 1 | Scenario 2 | Scenario 3 | Scenario 4 |
+|:----------:|:----------:|:----------:|:----------:|
+| <img src="./images/IterGNN_UAttentionConv_1.gif" width="400"> | <img src="./images/IterGNN_UAttentionConv_2.gif" width="400"> | <img src="./images/IterGNN_UAttentionConv_3.gif" width="400"> | <img src="./images/IterGNN_UAttentionConv_4.gif" width="400"> |
 
 ### Attention Visualization
 
